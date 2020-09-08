@@ -10,8 +10,4 @@ public final class Validators {
     public static Validator when(String name, Object value) {
         return new VariableValidator(name, value);
     }
-
-    public static Evaluator $(Object value) {
-        return new Evaluator(value);
-    }
 }

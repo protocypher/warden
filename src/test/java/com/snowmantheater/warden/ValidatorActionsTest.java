@@ -2,11 +2,14 @@ package com.snowmantheater.warden;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.matchers.Null;
 
 import java.util.function.Consumer;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class ValidatorActionsTest {
     @Test
@@ -213,14 +216,14 @@ class ValidatorActionsTest {
         Messages messages = new TestMessages();
         ValidatorActions actions = new ValidatorActions(3, true, messages);
         TestConsumer matchConsumer = new TestConsumer();
-        TestConsumer nomatchConsumer = new TestConsumer();
+        TestConsumer noMatchConsumer = new TestConsumer();
 
-        actions.executeOrElse(matchConsumer, nomatchConsumer);
+        actions.executeOrElse(matchConsumer, noMatchConsumer);
 
         assertTrue(matchConsumer.activated);
         assertEquals(3, matchConsumer.consumed);
-        assertFalse(nomatchConsumer.activated);
-        assertNull(nomatchConsumer.consumed);
+        assertFalse(noMatchConsumer.activated);
+        assertNull(noMatchConsumer.consumed);
     }
 
     @Test
@@ -229,14 +232,14 @@ class ValidatorActionsTest {
         Messages messages = new TestMessages();
         ValidatorActions actions = new ValidatorActions(3, false, messages);
         TestConsumer matchConsumer = new TestConsumer();
-        TestConsumer nomatchConsumer = new TestConsumer();
+        TestConsumer noMatchConsumer = new TestConsumer();
 
-        actions.executeOrElse(matchConsumer, nomatchConsumer);
+        actions.executeOrElse(matchConsumer, noMatchConsumer);
 
         assertFalse(matchConsumer.activated);
         assertNull(matchConsumer.consumed);
-        assertTrue(nomatchConsumer.activated);
-        assertEquals(3, nomatchConsumer.consumed);
+        assertTrue(noMatchConsumer.activated);
+        assertEquals(3, noMatchConsumer.consumed);
     }
 
     // =================================================================================================================

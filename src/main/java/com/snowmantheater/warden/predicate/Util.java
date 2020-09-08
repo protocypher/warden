@@ -4,10 +4,10 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 
-public class Utils {
+class Util {
 
     @SuppressWarnings("unchecked")
-    public static Optional<Comparable<Object>> getComparableOf(Object value) {
+    static Optional<Comparable<Object>> getComparableOf(Object value) {
         if(value instanceof Comparable) {
             return Optional.of((Comparable<Object>)value);
         } else {
@@ -15,7 +15,7 @@ public class Utils {
         }
     }
 
-    public static Optional<Integer> getSizeOf(Object value) {
+    static Optional<Integer> getSizeOf(Object value) {
         if(value == null) { return Optional.empty(); }
 
         if(value instanceof Collection) { return Optional.of(((Collection<?>)value).size()); }

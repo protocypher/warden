@@ -2,11 +2,10 @@ package com.snowmantheater.warden.predicate;
 
 import java.util.function.Predicate;
 
-import static com.snowmantheater.warden.predicate.Utils.getSizeOf;
+import static com.snowmantheater.warden.predicate.Util.getSizeOf;
 
 /**
- * This {@link Predicate} matches values that have <i>magnitude</i> and are
- * neither null or <b>empty</b>.
+ * {@link NotEmptyPredicate} matches values that have <i>magnitude</i> and are neither null or <b>empty</b>.
  *
  * @author benjamin@snowmantheater.com
  */
@@ -14,10 +13,12 @@ public class NotEmptyPredicate implements Predicate<Object> {
 
     /**
      * {@inheritDoc}
+     *
+     * @see EmptyPredicate
      */
     @Override
     public Predicate<Object> negate() {
-        return new AssertEmpty();
+        return new EmptyPredicate();
     }
 
     /**

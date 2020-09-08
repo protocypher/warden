@@ -2,16 +2,14 @@ package com.snowmantheater.warden;
 
 import java.util.function.Predicate;
 
+import static java.util.Objects.requireNonNull;
+
 public class VariableValidator implements Validator {
     private final String name;
     private final Object value;
 
     public VariableValidator(String name, Object value) {
-        if(name == null) {
-            throw new IllegalArgumentException("`name` cannot be null");
-        }
-
-        this.name = name;
+        this.name = requireNonNull(name, "name is null");
         this.value = value;
     }
 

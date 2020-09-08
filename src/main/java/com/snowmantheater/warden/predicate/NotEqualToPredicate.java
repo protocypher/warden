@@ -5,9 +5,8 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 /**
- * This {@link Predicate} matches values that do <i>not equal</i> a given
- * instance. If both the value and instance are arrays then {@link
- * Arrays#equals} is used otherwise {@link Objects#equals}.
+ * {@link NotEqualToPredicate} matches values that do <b>not equal</b> a given instance. If both the value and instance
+ * are arrays then {@link Arrays#equals} is used otherwise {@link Objects#equals}.
  *
  * @author benjamin@snowmantheater.com
  */
@@ -15,21 +14,22 @@ public class NotEqualToPredicate implements Predicate<Object> {
     private final Object object;
 
     /**
-     * Instantiates a new {@code AssertNotEqualTo} to match values that do
-     * <b>not equal</b> {@code object}.
+     * Creates a new {@link NotEqualToPredicate} matching values <b>not equal</b> {@code object}.
      *
-     * @param object The instance to test equality against
+     * @param object The given instance to test against
      */
-    public AssertNotEqualTo(Object object) {
+    public NotEqualToPredicate(Object object) {
         this.object = object;
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @see EqualToPredicate
      */
     @Override
     public Predicate<Object> negate() {
-        return new AssertEqualTo(object);
+        return new EqualToPredicate(object);
     }
 
     /**

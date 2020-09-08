@@ -5,10 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.function.Predicate;
 
-import static com.snowmantheater.warden.predicate.ValidationData.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class NullPredicateTest {
+class NullPredicateTest extends PredicateTest {
     @Test
     @DisplayName("Testing test(boolean t)")
     public void testing_test_where_Type_is_boolean() {

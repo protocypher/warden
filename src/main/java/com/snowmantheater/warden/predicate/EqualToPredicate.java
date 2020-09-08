@@ -5,9 +5,8 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 /**
- * This {@link Predicate} matches values that <i>equal</i> a given instance. If
- * both the value and instance are arrays then {@link Arrays#equals} is used
- * otherwise {@link Objects#equals}.
+ * {@link EqualToPredicate} matches values that <b>equal</b> a given instance. If both the value and instance are arrays
+ * then {@link Arrays#equals} is used otherwise {@link Objects#equals}.
  *
  * @author benjamin@snowmantheater.com
  */
@@ -15,21 +14,22 @@ public class EqualToPredicate implements Predicate<Object> {
     private final Object object;
 
     /**
-     * Instantiates a new {@code AssertEqualTo} to match values that
-     * <b>equal</b> {@code object}.
+     * Creates a new {@link EqualToPredicate} matching values <b>equal</b> {@code object}.
      *
-     * @param object The instance to test equality against
+     * @param object The given instance to test against
      */
-    public AssertEqualTo(Object object) {
+    public EqualToPredicate(Object object) {
         this.object = object;
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @see NotEqualToPredicate
      */
     @Override
     public Predicate<Object> negate() {
-        return new AssertNotEqualTo(object);
+        return new NotEqualToPredicate(object);
     }
 
     /**

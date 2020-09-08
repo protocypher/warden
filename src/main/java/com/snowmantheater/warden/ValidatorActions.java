@@ -3,19 +3,17 @@ package com.snowmantheater.warden;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import static java.util.Objects.requireNonNull;
+
 public class ValidatorActions {
     private final Object value;
     private final boolean matching;
     private final Messages messages;
 
     ValidatorActions(Object value, boolean matching, Messages messages) {
-        if(messages == null) {
-            throw new IllegalArgumentException("`messages` cannot be null");
-        }
-
         this.value = value;
         this.matching = matching;
-        this.messages = messages;
+        this.messages = requireNonNull(messages, "messages is null");
     }
 
     public Object getValue() {

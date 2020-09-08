@@ -3,13 +3,20 @@ package com.snowmantheater.warden;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class VariableValidatorTest {
     @Test
-    @DisplayName("Given name=null, calling new throws IllegalArgumentException")
-    public void given_name_is_null_calling_new_throws_IAE() {
-        assertThrows(IllegalArgumentException.class, () -> new VariableValidator(null, null));
+    @DisplayName("Given name=null, calling new throws NullPointerException")
+    public void given_name_is_null_calling_new_throws_NPE() {
+        assertThrows(
+            NullPointerException.class,
+            () -> new VariableValidator(null, null)
+        );
     }
 
     @Test

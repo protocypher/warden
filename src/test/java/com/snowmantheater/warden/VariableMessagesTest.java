@@ -3,14 +3,17 @@ package com.snowmantheater.warden;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class VariableMessagesTest {
     @Test
-    @DisplayName("Given name=null and value=null, calling getMessagePrefix() returns \"Rejecting null='null'\"")
-    public void given_name_is_null_and_value_is_null_calling_getMessagePrefix_returns_String() {
-        VariableMessages messages = new VariableMessages(null, null);
-        assertEquals("Rejecting null='null'", messages.getMessagePrefix());
+    @DisplayName("Given name=null and value=null, calling new throws NullPointerException")
+    public void given_name_is_null_and_value_is_null_calling_new_throws_NPE() {
+        assertThrows(
+            NullPointerException.class,
+            () -> new VariableMessages(null, null)
+        );
     }
 
     @Test

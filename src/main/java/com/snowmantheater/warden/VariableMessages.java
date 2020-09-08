@@ -1,5 +1,7 @@
 package com.snowmantheater.warden;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * This class provides messages about named values, or variables.
  */
@@ -15,7 +17,7 @@ public class VariableMessages extends AbstractMessages implements Messages {
      * @param value The topic of the messages
      */
     VariableMessages(String name, Object value) {
-        this.name = name;
+        this.name = requireNonNull(name, "name is null");
         this.value = value;
     }
 

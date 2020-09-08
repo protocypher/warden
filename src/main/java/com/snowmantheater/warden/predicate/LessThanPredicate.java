@@ -2,11 +2,11 @@ package com.snowmantheater.warden.predicate;
 
 import java.util.function.Predicate;
 
-import static com.snowmantheater.warden.predicate.Utils.getComparableOf;
+import static com.snowmantheater.warden.predicate.Util.getComparableOf;
+import static java.util.Objects.requireNonNull;
 
 /**
- * This {@link Predicate} matches values that are {@link Comparable} with a
- * given instance and are <b>less than</b> it.
+ * {@link LessThanPredicate} matches values that are {@link Comparable} with and <b>less than</b> a given instance.
  *
  * @author benjamin@snowmantheater.com
  */
@@ -14,25 +14,22 @@ public class LessThanPredicate implements Predicate<Object> {
     private final Object object;
 
     /**
-     * Instantiates a new {@code AssertLessThan} to compare values with {@code
-     * object}.
+     * Creates a new {@link LessThanPredicate} matching values <b>less than</b> {@code object}.
      *
-     * @param object The instance compare with
+     * @param object The given instance to test against
      */
-    public AssertLessThan(Object object) {
-        if(object == null) {
-            throw new IllegalArgumentException("`object` cannot be NULL");
-        }
-
-        this.object = object;
+    public LessThanPredicate(Object object) {
+        this.object = requireNonNull(object, "object is null");
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @see GreaterThanOrEqualToPredicate
      */
     @Override
     public Predicate<Object> negate() {
-        return new AssertGreaterThanOrEqualTo(object);
+        return new GreaterThanOrEqualToPredicate(object);
     }
 
     /**

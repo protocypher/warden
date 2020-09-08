@@ -2,11 +2,11 @@ package com.snowmantheater.warden.predicate;
 
 import java.util.function.Predicate;
 
-import static com.snowmantheater.warden.predicate.Utils.getSizeOf;
+import static com.snowmantheater.warden.predicate.Util.getSizeOf;
 
 /**
- * This {@link Predicate} matches the <i>magnitude</i> of values that
- * <b>equal</b> a given size.
+ * {@link SizeNotEqualToPredicate} matches values that have <i>magnitude</i> and their size is <b>equal</b> to a given
+ * size.
  *
  * @author benjamin@snowmantheater.com
  */
@@ -14,21 +14,22 @@ public class SizeEqualToPredicate implements Predicate<Object> {
     private final int size;
 
     /**
-     * Instantiates a new {@code AssertSizeEqualTo} to match the
-     * <i>magnitude</i> of values that <b>equal</b> {@code size}.
+     * Creates a new {@link SizeEqualToPredicate} matching values with size <b>equal</b> {@code size}.
      *
-     * @param size The size to test equality against
+     * @param size The size to test against
      */
-    public AssertSizeEqualTo(int size) {
+    public SizeEqualToPredicate(int size) {
         this.size = size;
     }
 
     /**
      * {@inheritDoc}
+     *
+     * @see SizeNotEqualToPredicate
      */
     @Override
     public Predicate<Object> negate() {
-        return new AssertSizeNotEqualTo(size);
+        return new SizeNotEqualToPredicate(size);
     }
 
     /**
