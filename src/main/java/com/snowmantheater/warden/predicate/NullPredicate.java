@@ -9,6 +9,18 @@ import java.util.function.Predicate;
  */
 public class NullPredicate implements Predicate<Object> {
 
+    /* PACKAGE LOCKED */
+    NullPredicate() { }
+
+    /**
+     * Creates a new {@link NullPredicate} matching values that are <b>null</b>.
+     *
+     * @return A new NullPredicate
+     */
+    public static NullPredicate isNull() {
+        return new NullPredicate();
+    }
+
     /**
      * {@inheritDoc}
      *
@@ -25,5 +37,13 @@ public class NullPredicate implements Predicate<Object> {
     @Override
     public boolean test(Object t) {
         return t == null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof NullPredicate;
     }
 }

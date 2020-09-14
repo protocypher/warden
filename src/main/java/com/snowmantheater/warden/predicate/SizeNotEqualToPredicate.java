@@ -1,5 +1,6 @@
 package com.snowmantheater.warden.predicate;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import static com.snowmantheater.warden.predicate.Util.getSizeOf;
@@ -13,13 +14,28 @@ import static com.snowmantheater.warden.predicate.Util.getSizeOf;
 public class SizeNotEqualToPredicate implements Predicate<Object> {
     private final int size;
 
+    /* PACKAGE LOCKED */
+    SizeNotEqualToPredicate(int size) {
+        this.size = size;
+    }
+
     /**
      * Creates a new {@link SizeNotEqualToPredicate} matching values with size <b>not equal</b> {@code size}.
      *
      * @param size The size to test against
      */
-    public SizeNotEqualToPredicate(int size) {
-        this.size = size;
+    public static SizeNotEqualToPredicate isSizeNotEqualTo(int size) {
+        return new SizeNotEqualToPredicate(size);
+    }
+
+    /**
+     * <i>(shorthand)</i> Creates a new {@link SizeNotEqualToPredicate} matching values with size <b>not equal</b>
+     * {@code size}.
+     *
+     * @param size The size to test against
+     */
+    public static SizeNotEqualToPredicate zne(int size) {
+        return isSizeNotEqualTo(size);
     }
 
     /**
@@ -38,5 +54,13 @@ public class SizeNotEqualToPredicate implements Predicate<Object> {
     @Override
     public boolean test(Object t) {
         return getSizeOf(t).filter(s -> s != size).isPresent();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof SizeNotEqualToPredicate && Objects.equals(size, ((SizeNotEqualToPredicate) other).size);
     }
 }

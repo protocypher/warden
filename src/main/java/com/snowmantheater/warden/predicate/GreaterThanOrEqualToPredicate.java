@@ -1,5 +1,6 @@
 package com.snowmantheater.warden.predicate;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import static com.snowmantheater.warden.predicate.Util.getComparableOf;
@@ -14,14 +15,29 @@ import static java.util.Objects.requireNonNull;
 public class GreaterThanOrEqualToPredicate implements Predicate<Object> {
     private final Object object;
 
+    /* PACKAGE LOCKED */
+    GreaterThanOrEqualToPredicate(Object object) {
+        this.object = requireNonNull(object, "object is null");
+    }
+
     /**
      * Creates a new {@link GreaterThanOrEqualToPredicate} matching values <b>greater than or equals to</b>
      * {@code object}.
      *
      * @param object The given instance to test against
      */
-    public GreaterThanOrEqualToPredicate(Object object) {
-        this.object = requireNonNull(object, "object is null");
+    public static GreaterThanOrEqualToPredicate isGreaterThanOrEqualTo(Object object) {
+        return new GreaterThanOrEqualToPredicate(object);
+    }
+
+    /**
+     * <i>(shorthand)</i> Creates a new {@link GreaterThanOrEqualToPredicate} matching values <b>greater than or equals
+     * to</b> {@code object}.
+     *
+     * @param object The given instance to test against
+     */
+    public static GreaterThanOrEqualToPredicate ge(Object object) {
+        return isGreaterThanOrEqualTo(object);
     }
 
     /**
@@ -44,5 +60,14 @@ public class GreaterThanOrEqualToPredicate implements Predicate<Object> {
         } catch(ClassCastException ignored) {
             return false;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof GreaterThanOrEqualToPredicate &&
+            Objects.equals(object, ((GreaterThanOrEqualToPredicate) other).object);
     }
 }

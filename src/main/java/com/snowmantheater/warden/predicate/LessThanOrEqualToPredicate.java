@@ -1,5 +1,6 @@
 package com.snowmantheater.warden.predicate;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import static com.snowmantheater.warden.predicate.Util.getComparableOf;
@@ -14,13 +15,28 @@ import static java.util.Objects.requireNonNull;
 public class LessThanOrEqualToPredicate implements Predicate<Object> {
     private final Object object;
 
+    /* PACKAGE LOCKED */
+    LessThanOrEqualToPredicate(Object object) {
+        this.object = requireNonNull(object, "object is null");
+    }
+
     /**
-     * Creates a new {@code AssertLessThanOrEqualTo} matching values <b>less than or equal to</b> {@code object}.
+     * Creates a new {@link LessThanOrEqualToPredicate} matching values <b>less than or equal to</b> {@code object}.
      *
      * @param object The given instance to test against
      */
-    public LessThanOrEqualToPredicate(Object object) {
-        this.object = requireNonNull(object, "object is null");
+    public static LessThanOrEqualToPredicate isLessThanOrEqualTo(Object object) {
+        return new LessThanOrEqualToPredicate(object);
+    }
+
+    /**
+     * <i>(shorthand)</i> Creates a new {@link LessThanOrEqualToPredicate} matching values <b>less than or equal to</b>
+     * {@code object}.
+     *
+     * @param object The given instance to test against
+     */
+    public static LessThanOrEqualToPredicate le(Object object) {
+        return isLessThanOrEqualTo(object);
     }
 
     /**
@@ -43,5 +59,14 @@ public class LessThanOrEqualToPredicate implements Predicate<Object> {
         } catch(ClassCastException ignored) {
             return false;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof LessThanOrEqualToPredicate &&
+            Objects.equals(object, ((LessThanOrEqualToPredicate) other).object);
     }
 }

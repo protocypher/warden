@@ -13,13 +13,27 @@ import java.util.function.Predicate;
 public class EqualToPredicate implements Predicate<Object> {
     private final Object object;
 
+    /* PACKAGE LOCKED */
+    EqualToPredicate(Object object) {
+        this.object = object;
+    }
+
     /**
-     * Creates a new {@link EqualToPredicate} matching values <b>equal</b> {@code object}.
+     * Creates a new {@link EqualToPredicate} matching values <b>equal to</b> {@code object}.
      *
      * @param object The given instance to test against
      */
-    public EqualToPredicate(Object object) {
-        this.object = object;
+    public static EqualToPredicate isEqualTo(Object object) {
+        return new EqualToPredicate(object);
+    }
+
+    /**
+     * <i>(shorthand)</i> Creates a new {@link EqualToPredicate} matching values <b>equal to</b> {@code object}.
+     *
+     * @param object The given instance to test against
+     */
+    public static EqualToPredicate eq(Object object) {
+        return isEqualTo(object);
     }
 
     /**
@@ -74,5 +88,13 @@ public class EqualToPredicate implements Predicate<Object> {
         }
 
         return Objects.equals(t, object);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof EqualToPredicate && Objects.equals(object, ((EqualToPredicate)other).object);
     }
 }

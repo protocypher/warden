@@ -6,299 +6,121 @@ import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import java.util.function.Predicate;
 
+import static com.snowmantheater.warden.predicate.EqualToPredicate.isEqualTo;
+import static com.snowmantheater.warden.predicate.PredicateTestHelper.FALSE;
+import static com.snowmantheater.warden.predicate.PredicateTestHelper.TRUE;
+import static com.snowmantheater.warden.predicate.PredicateTestHelper.apply;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class EqualToPredicateTest extends PredicateTest {
     @Test
-    @DisplayName("Testing test(boolean t)")
-    public void testing_test_where_Type_is_boolean() {
-        Predicate<Object> predicate;
+    @DisplayName("Calling test(primitive) ...")
+    public void calling_test_w_primitive_() {
+        assertTrue(apply(isEqualTo(true)).to(BOOL_TRUE).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(true)).to(BOOL_FALSE).allMatch(FALSE));
+        assertTrue(apply(isEqualTo(0L)).to(BOOL_TRUE, BOOL_FALSE).allMatch(FALSE));
 
-        predicate = new EqualToPredicate(true);
-        assertTrue(predicate.test(BOOL_TRUE));
-        assertFalse(predicate.test(BOOL_FALSE));
+        assertTrue(apply(isEqualTo((byte)3)).to(BYTE_POS3).allMatch(TRUE));
+        assertTrue(apply(isEqualTo((byte)3)).to(BYTE_NEG3, BYTE_ZERO).allMatch(FALSE));
+        assertTrue(apply(isEqualTo((char)3)).to(BYTE_NEG3, BYTE_ZERO, BYTE_POS3).allMatch(FALSE));
 
-        predicate = new EqualToPredicate(0L);
-        assertFalse(predicate.test(BOOL_TRUE));
-        assertFalse(predicate.test(BOOL_FALSE));
+        assertTrue(apply(isEqualTo('Z')).to(CHAR_Z).allMatch(TRUE));
+        assertTrue(apply(isEqualTo('Z')).to(CHAR_0, CHAR_A).allMatch(FALSE));
+        assertTrue(apply(isEqualTo(false)).to(CHAR_0, CHAR_A, CHAR_Z).allMatch(FALSE));
+
+        assertTrue(apply(isEqualTo(3.3D)).to(DOUBLE_POS3).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(3.3D)).to(DOUBLE_NEG3, DOUBLE_ZERO).allMatch(FALSE));
+        assertTrue(apply(isEqualTo(false)).to(DOUBLE_NEG3, DOUBLE_ZERO, DOUBLE_POS3).allMatch(FALSE));
+
+        assertTrue(apply(isEqualTo(3.3F)).to(FLOAT_POS3).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(3.3F)).to(FLOAT_NEG3, FLOAT_ZERO).allMatch(FALSE));
+        assertTrue(apply(isEqualTo(false)).to(FLOAT_NEG3, FLOAT_ZERO, FLOAT_POS3).allMatch(FALSE));
+
+        assertTrue(apply(isEqualTo(3)).to(INT_POS3).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(3)).to(INT_NEG3, INT_ZERO).allMatch(FALSE));
+        assertTrue(apply(isEqualTo((char)3)).to(INT_NEG3, INT_ZERO, INT_POS3).allMatch(FALSE));
+
+        assertTrue(apply(isEqualTo(3L)).to(LONG_POS3).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(3L)).to(LONG_NEG3, LONG_ZERO).allMatch(FALSE));
+        assertTrue(apply(isEqualTo((char)3)).to(LONG_NEG3, LONG_ZERO, LONG_POS3).allMatch(FALSE));
+
+        assertTrue(apply(isEqualTo((short)3)).to(SHORT_POS3).allMatch(TRUE));
+        assertTrue(apply(isEqualTo((short)3)).to(SHORT_NEG3, SHORT_ZERO).allMatch(FALSE));
+        assertTrue(apply(isEqualTo(false)).to(SHORT_NEG3, SHORT_ZERO, SHORT_POS3).allMatch(FALSE));
     }
 
     @Test
-    @DisplayName("Testing test(byte t)")
-    public void testing_test_where_Type_is_byte() {
-        Predicate<Object> predicate;
+    @DisplayName("Calling test(instance) ...")
+    public void calling_test_w_instance_() {
+        assertTrue(apply(isEqualTo(null)).to(NUMBER_NULL).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(null)).to(NUMBER_NEG3, NUMBER_ZERO, NUMBER_POS3).allMatch(FALSE));
+        assertTrue(apply(isEqualTo(3)).to(NUMBER_POS3).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(3)).to(NUMBER_NULL, NUMBER_NEG3, NUMBER_ZERO).allMatch(FALSE));
 
-        predicate = new EqualToPredicate((byte)3);
-        assertFalse(predicate.test(BYTE_NEG3));
-        assertFalse(predicate.test(BYTE_ZERO));
-        assertTrue(predicate.test(BYTE_POS3));
-
-        predicate = new EqualToPredicate((char)3);
-        assertFalse(predicate.test(BYTE_NEG3));
-        assertFalse(predicate.test(BYTE_ZERO));
-        assertFalse(predicate.test(BYTE_POS3));
+        assertTrue(apply(isEqualTo(null)).to(OBJECT_NULL).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(null)).to(OBJECT_VALUE).allMatch(FALSE));
+        assertTrue(apply(isEqualTo(OBJECT_VALUE)).to(OBJECT_VALUE).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(OBJECT_VALUE)).to(OBJECT_NULL).allMatch(FALSE));
     }
 
     @Test
-    @DisplayName("Testing test(char t)")
-    public void testing_test_where_Type_is_char() {
-        Predicate<Object> predicate;
-
-        predicate = new EqualToPredicate('Z');
-        assertFalse(predicate.test(CHAR_0));
-        assertFalse(predicate.test(CHAR_A));
-        assertTrue(predicate.test(CHAR_Z));
-
-        predicate = new EqualToPredicate(false);
-        assertFalse(predicate.test(CHAR_0));
-        assertFalse(predicate.test(CHAR_A));
-        assertFalse(predicate.test(CHAR_Z));
+    @DisplayName("Calling test(String) ...")
+    public void calling_test_w_String_() {
+        assertTrue(apply(isEqualTo(null)).to(STRING_NULL).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(null)).to(STRING_EMPTY, STRING_ABC, STRING_XYZ).allMatch(FALSE));
+        assertTrue(apply(isEqualTo("ABC")).to(STRING_ABC).allMatch(TRUE));
+        assertTrue(apply(isEqualTo("ABC")).to(STRING_NULL, STRING_EMPTY, STRING_XYZ).allMatch(FALSE));
     }
 
     @Test
-    @DisplayName("Testing test(double t)")
-    public void testing_test_where_Type_is_double() {
-        Predicate<Object> predicate;
+    @DisplayName("Calling test(Collection) ...")
+    public void calling_test_w_Collection_() {
+        assertTrue(apply(isEqualTo(Collections.emptyList())).to(LIST_EMPTY).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(Collections.emptyList())).to(LIST_NULL, LIST_VALUE).allMatch(FALSE));
 
-        predicate = new EqualToPredicate(3.3D);
-        assertFalse(predicate.test(DOUBLE_NEG3));
-        assertFalse(predicate.test(DOUBLE_ZERO));
-        assertTrue(predicate.test(DOUBLE_POS3));
+        assertTrue(apply(isEqualTo(Collections.emptyMap())).to(MAP_EMPTY).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(Collections.emptyMap())).to(MAP_NULL, MAP_VALUE).allMatch(FALSE));
 
-        predicate = new EqualToPredicate(false);
-        assertFalse(predicate.test(DOUBLE_NEG3));
-        assertFalse(predicate.test(DOUBLE_ZERO));
-        assertFalse(predicate.test(DOUBLE_POS3));
+        assertTrue(apply(isEqualTo(Collections.emptySet())).to(SET_EMPTY).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(Collections.emptySet())).to(SET_NULL, SET_VALUE).allMatch(FALSE));
     }
 
     @Test
-    @DisplayName("Testing test(float t)")
-    public void testing_test_where_Type_is_float() {
-        Predicate<Object> predicate;
+    @DisplayName("Calling test(array) ...")
+    public void calling_test_w_array_() {
+        assertTrue(apply(isEqualTo(new Object[] { })).toOne(ARRAY_OBJECT_EMPTY).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(new Object[] { })).to(ARRAY_OBJECT_NULL, ARRAY_OBJECT_VALUE).allMatch(FALSE));
 
-        predicate = new EqualToPredicate(3.3F);
-        assertFalse(predicate.test(FLOAT_NEG3));
-        assertFalse(predicate.test(FLOAT_ZERO));
-        assertTrue(predicate.test(FLOAT_POS3));
+        assertTrue(apply(isEqualTo(new boolean[] { })).toOne(ARRAY_BOOL_EMPTY).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(new boolean[] { })).to(ARRAY_BOOL_NULL, ARRAY_BOOL_VALUE).allMatch(FALSE));
 
-        predicate = new EqualToPredicate(false);
-        assertFalse(predicate.test(FLOAT_NEG3));
-        assertFalse(predicate.test(FLOAT_ZERO));
-        assertFalse(predicate.test(FLOAT_POS3));
+        assertTrue(apply(isEqualTo(new byte[] {1, 2, 3})).toOne(ARRAY_BYTE_VALUE).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(new byte[] {1, 2, 3})).to(ARRAY_BYTE_NULL, ARRAY_BYTE_EMPTY).allMatch(FALSE));
+
+        assertTrue(apply(isEqualTo(new char[] {'A', 'B', 'C'})).toOne(ARRAY_CHAR_VALUE).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(new char[] {'A', 'B', 'C'})).to(ARRAY_CHAR_NULL, ARRAY_CHAR_EMPTY).allMatch(FALSE));
+
+        assertTrue(apply(isEqualTo(new double[] { })).toOne(ARRAY_DOUBLE_EMPTY).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(new double[] { })).to(ARRAY_DOUBLE_NULL, ARRAY_DOUBLE_VALUE).allMatch(FALSE));
+
+        assertTrue(apply(isEqualTo(new float[] { })).toOne(ARRAY_FLOAT_EMPTY).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(new float[] { })).to(ARRAY_FLOAT_NULL, ARRAY_FLOAT_VALUE).allMatch(FALSE));
+
+        assertTrue(apply(isEqualTo(new int[] { })).toOne(ARRAY_INT_EMPTY).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(new int[] { })).to(ARRAY_INT_NULL, ARRAY_INT_VALUE).allMatch(FALSE));
+
+        assertTrue(apply(isEqualTo(new long[] { })).toOne(ARRAY_LONG_EMPTY).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(new long[] { })).to(ARRAY_LONG_NULL, ARRAY_LONG_VALUE).allMatch(FALSE));
+
+        assertTrue(apply(isEqualTo(new short[] { })).toOne(ARRAY_SHORT_EMPTY).allMatch(TRUE));
+        assertTrue(apply(isEqualTo(new short[] { })).to(ARRAY_SHORT_NULL, ARRAY_SHORT_VALUE).allMatch(FALSE));
     }
 
     @Test
-    @DisplayName("Testing test(int t)")
-    public void testing_test_where_Type_is_int() {
-        Predicate<Object> predicate;
-
-        predicate = new EqualToPredicate(3);
-        assertFalse(predicate.test(INT_NEG3));
-        assertFalse(predicate.test(INT_ZERO));
-        assertTrue(predicate.test(INT_POS3));
-
-        predicate = new EqualToPredicate((char)3);
-        assertFalse(predicate.test(INT_NEG3));
-        assertFalse(predicate.test(INT_ZERO));
-        assertFalse(predicate.test(INT_POS3));
-    }
-
-    @Test
-    @DisplayName("Testing test(long t)")
-    public void testing_test_where_Type_is_long() {
-        Predicate<Object> predicate;
-
-        predicate = new EqualToPredicate(3L);
-        assertFalse(predicate.test(LONG_NEG3));
-        assertFalse(predicate.test(LONG_ZERO));
-        assertTrue(predicate.test(LONG_POS3));
-
-        predicate = new EqualToPredicate((char)3);
-        assertFalse(predicate.test(LONG_NEG3));
-        assertFalse(predicate.test(LONG_ZERO));
-        assertFalse(predicate.test(LONG_POS3));
-    }
-
-    @Test
-    @DisplayName("Testing test(short t)")
-    public void testing_test_where_Type_is_short() {
-        Predicate<Object> predicate;
-
-        predicate = new EqualToPredicate((short)3);
-        assertFalse(predicate.test(SHORT_NEG3));
-        assertFalse(predicate.test(SHORT_ZERO));
-        assertTrue(predicate.test(SHORT_POS3));
-
-        predicate = new EqualToPredicate(false);
-        assertFalse(predicate.test(SHORT_NEG3));
-        assertFalse(predicate.test(SHORT_ZERO));
-        assertFalse(predicate.test(SHORT_POS3));
-    }
-
-    @Test
-    @DisplayName("Testing test(Number t)")
-    public void testing_test_where_Type_is_Number() {
-        Predicate<Object> predicate;
-
-        predicate = new EqualToPredicate(null);
-        assertTrue(predicate.test(NUMBER_NULL));
-        assertFalse(predicate.test(NUMBER_NEG3));
-        assertFalse(predicate.test(NUMBER_ZERO));
-        assertFalse(predicate.test(NUMBER_POS3));
-
-        predicate = new EqualToPredicate(3);
-        assertFalse(predicate.test(NUMBER_NULL));
-        assertFalse(predicate.test(NUMBER_NEG3));
-        assertFalse(predicate.test(NUMBER_ZERO));
-        assertTrue(predicate.test(NUMBER_POS3));
-    }
-
-    @Test
-    @DisplayName("Testing test(Object t)")
-    public void testing_test_where_Type_is_Object() {
-        Predicate<Object> predicate;
-
-        predicate = new EqualToPredicate(null);
-        assertTrue(predicate.test(OBJECT_NULL));
-        assertFalse(predicate.test(OBJECT_VALUE));
-
-        predicate = new EqualToPredicate(OBJECT_VALUE);
-        assertFalse(predicate.test(OBJECT_NULL));
-        assertTrue(predicate.test(OBJECT_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(String t)")
-    public void testing_test_where_Type_is_String() {
-        Predicate<Object> predicate;
-
-        predicate = new EqualToPredicate(null);
-        assertTrue(predicate.test(STRING_NULL));
-        assertFalse(predicate.test(STRING_EMPTY));
-        assertFalse(predicate.test(STRING_ABC));
-        assertFalse(predicate.test(STRING_XYZ));
-
-        predicate = new EqualToPredicate("ABC");
-        assertFalse(predicate.test(STRING_NULL));
-        assertFalse(predicate.test(STRING_EMPTY));
-        assertTrue(predicate.test(STRING_ABC));
-        assertFalse(predicate.test(STRING_XYZ));
-    }
-
-    @Test
-    @DisplayName("Testing test(List t)")
-    public void testing_test_where_Type_is_List() {
-        Predicate<Object> predicate = new EqualToPredicate(Collections.emptyList());
-        assertFalse(predicate.test(LIST_NULL));
-        assertTrue(predicate.test(LIST_EMPTY));
-        assertFalse(predicate.test(LIST_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(Map t)")
-    public void testing_test_where_Type_is_Map() {
-        Predicate<Object> predicate = new EqualToPredicate(Collections.emptyMap());
-        assertFalse(predicate.test(MAP_NULL));
-        assertTrue(predicate.test(MAP_EMPTY));
-        assertFalse(predicate.test(MAP_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(Set t)")
-    public void testing_test_where_Type_is_Set() {
-        Predicate<Object> predicate = new EqualToPredicate(Collections.emptySet());
-        assertFalse(predicate.test(SET_NULL));
-        assertTrue(predicate.test(SET_EMPTY));
-        assertFalse(predicate.test(SET_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(Object[] t)")
-    public void testing_test_where_Type_is_ObjectArr() {
-        Predicate<Object> predicate = new EqualToPredicate(new Object[] { });
-        assertFalse(predicate.test(ARRAY_OBJECT_NULL));
-        assertTrue(predicate.test(ARRAY_OBJECT_EMPTY));
-        assertFalse(predicate.test(ARRAY_OBJECT_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(boolean[] t)")
-    public void testing_test_where_Type_is_booleanArr() {
-        Predicate<Object> predicate = new EqualToPredicate(new boolean[] { });
-        assertFalse(predicate.test(ARRAY_BOOL_NULL));
-        assertTrue(predicate.test(ARRAY_BOOL_EMPTY));
-        assertFalse(predicate.test(ARRAY_BOOL_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(byte[] t)")
-    public void testing_test_where_Type_is_byteArr() {
-        Predicate<Object> predicate = new EqualToPredicate(new byte[] {1, 2, 3});
-        assertFalse(predicate.test(ARRAY_BYTE_NULL));
-        assertFalse(predicate.test(ARRAY_BYTE_EMPTY));
-        assertTrue(predicate.test(ARRAY_BYTE_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(char[] t)")
-    public void testing_test_where_Type_is_charArr() {
-        Predicate<Object> predicate = new EqualToPredicate(new char[] {'A', 'B', 'C'});
-        assertFalse(predicate.test(ARRAY_CHAR_NULL));
-        assertFalse(predicate.test(ARRAY_CHAR_EMPTY));
-        assertTrue(predicate.test(ARRAY_CHAR_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(double[] t)")
-    public void testing_test_where_Type_is_doubleArr() {
-        Predicate<Object> predicate = new EqualToPredicate(new double[] { });
-        assertFalse(predicate.test(ARRAY_DOUBLE_NULL));
-        assertTrue(predicate.test(ARRAY_DOUBLE_EMPTY));
-        assertFalse(predicate.test(ARRAY_DOUBLE_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(float[] t)")
-    public void testing_test_where_Type_is_floatArr() {
-        Predicate<Object> predicate = new EqualToPredicate(new float[] { });
-        assertFalse(predicate.test(ARRAY_FLOAT_NULL));
-        assertTrue(predicate.test(ARRAY_FLOAT_EMPTY));
-        assertFalse(predicate.test(ARRAY_FLOAT_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(int[] t)")
-    public void testing_test_where_Type_is_intArr() {
-        Predicate<Object> predicate = new EqualToPredicate(new int[] { });
-        assertFalse(predicate.test(ARRAY_INT_NULL));
-        assertTrue(predicate.test(ARRAY_INT_EMPTY));
-        assertFalse(predicate.test(ARRAY_INT_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(long[] t)")
-    public void testing_test_where_Type_is_longArr() {
-        Predicate<Object> predicate = new EqualToPredicate(new long[] { });
-        assertFalse(predicate.test(ARRAY_LONG_NULL));
-        assertTrue(predicate.test(ARRAY_LONG_EMPTY));
-        assertFalse(predicate.test(ARRAY_LONG_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(short[] t)")
-    public void testing_test_where_Type_is_shortArr() {
-        Predicate<Object> predicate = new EqualToPredicate(new short[] { });
-        assertFalse(predicate.test(ARRAY_SHORT_NULL));
-        assertTrue(predicate.test(ARRAY_SHORT_EMPTY));
-        assertFalse(predicate.test(ARRAY_SHORT_VALUE));
-    }
-
-    @Test
-    @DisplayName("Calling negate() returns instanceof AssertNotEqualTo")
-    public void calling_negate_returns_instanceof_AssertNotEqualTo() {
-        Predicate<Object> predicate = new EqualToPredicate(0);
+    @DisplayName("Calling negate() returns NotEqualToPredicate")
+    public void calling_negate_returns_NotEqualToPredicate() {
+        Predicate<Object> predicate = isEqualTo(0);
         Predicate<Object> negated = predicate.negate();
         assertEquals(NotEqualToPredicate.class, negated.getClass());
     }

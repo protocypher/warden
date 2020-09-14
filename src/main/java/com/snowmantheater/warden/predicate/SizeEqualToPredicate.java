@@ -1,5 +1,6 @@
 package com.snowmantheater.warden.predicate;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import static com.snowmantheater.warden.predicate.Util.getSizeOf;
@@ -13,13 +14,28 @@ import static com.snowmantheater.warden.predicate.Util.getSizeOf;
 public class SizeEqualToPredicate implements Predicate<Object> {
     private final int size;
 
+    /* PACKAGE LOCKED */
+    SizeEqualToPredicate(int size) {
+        this.size = size;
+    }
+
     /**
      * Creates a new {@link SizeEqualToPredicate} matching values with size <b>equal</b> {@code size}.
      *
      * @param size The size to test against
      */
-    public SizeEqualToPredicate(int size) {
-        this.size = size;
+    public static SizeEqualToPredicate isSizeEqualTo(int size) {
+        return new SizeEqualToPredicate(size);
+    }
+
+    /**
+     * <i>(shorthand)</i> Creates a new {@link SizeEqualToPredicate} matching values with size <b>equal</b>
+     * {@code size}.
+     *
+     * @param size The size to test against
+     */
+    public static SizeEqualToPredicate zeq(int size) {
+        return isSizeEqualTo(size);
     }
 
     /**
@@ -38,5 +54,12 @@ public class SizeEqualToPredicate implements Predicate<Object> {
     @Override
     public boolean test(Object t) {
         return getSizeOf(t).filter(s -> s == size).isPresent();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public boolean equals(Object other) {
+        return other instanceof SizeEqualToPredicate && Objects.equals(size, ((SizeEqualToPredicate) other).size);
     }
 }

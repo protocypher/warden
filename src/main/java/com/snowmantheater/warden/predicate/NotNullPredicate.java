@@ -9,6 +9,18 @@ import java.util.function.Predicate;
  */
 public class NotNullPredicate implements Predicate<Object> {
 
+    /* PACKAGE LOCKED */
+    NotNullPredicate() { }
+
+    /**
+     * Creates a new {@link NotNullPredicate} matching values that are <b>not null</b>.
+     *
+     * @return A new NotNullPredicate
+     */
+    public static NotNullPredicate isNotNull() {
+        return new NotNullPredicate();
+    }
+
     /**
      * {@inheritDoc}
      *
@@ -25,5 +37,13 @@ public class NotNullPredicate implements Predicate<Object> {
     @Override
     public boolean test(Object t) {
         return t != null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof NotNullPredicate;
     }
 }

@@ -1,5 +1,6 @@
 package com.snowmantheater.warden.predicate;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import static com.snowmantheater.warden.predicate.Util.getSizeOf;
@@ -13,13 +14,28 @@ import static com.snowmantheater.warden.predicate.Util.getSizeOf;
 public class SizeGreaterThanPredicate implements Predicate<Object> {
     private final int size;
 
+    /* PACKAGE LOCKED */
+    SizeGreaterThanPredicate(int size) {
+        this.size = size;
+    }
+
     /**
      * Creates a new {@link SizeGreaterThanPredicate} matching values with size <b>greater than</b> {@code size}.
      *
      * @param size The size to test equality against
      */
-    public SizeGreaterThanPredicate(int size) {
-        this.size = size;
+    public static SizeGreaterThanPredicate isSizeGreaterThan(int size) {
+        return new SizeGreaterThanPredicate(size);
+    }
+
+    /**
+     * <i>(shorthand)</i> Creates a new {@link SizeGreaterThanPredicate} matching values with size <b>greater than</b>
+     * {@code size}.
+     *
+     * @param size The size to test equality against
+     */
+    public static SizeGreaterThanPredicate zgt(int size) {
+        return isSizeGreaterThan(size);
     }
 
     /**
@@ -38,5 +54,10 @@ public class SizeGreaterThanPredicate implements Predicate<Object> {
     @Override
     public boolean test(Object t) {
         return getSizeOf(t).filter(s -> s > size).isPresent();
+    }
+
+    public boolean equals(Object other) {
+        return other instanceof SizeGreaterThanPredicate &&
+            Objects.equals(size, ((SizeGreaterThanPredicate) other).size);
     }
 }

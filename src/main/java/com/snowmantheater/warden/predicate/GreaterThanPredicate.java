@@ -1,5 +1,6 @@
 package com.snowmantheater.warden.predicate;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import static com.snowmantheater.warden.predicate.Util.getComparableOf;
@@ -14,13 +15,36 @@ import static java.util.Objects.requireNonNull;
 public class GreaterThanPredicate implements Predicate<Object> {
     private final Object object;
 
+    /* PACKAGE LOCKED */
+    GreaterThanPredicate(Object object) {
+        this.object = requireNonNull(object, "object is null");
+    }
+
     /**
      * Creates a new {@link GreaterThanPredicate} matching values <b>greater than</b> {@code object}.
      *
      * @param object The given instance to test against
      */
-    public GreaterThanPredicate(Object object) {
-        this.object = requireNonNull(object, "object is null");
+    public static GreaterThanPredicate isGreaterThan(Object object) {
+        return new GreaterThanPredicate(object);
+    }
+
+    /**
+     * <i>(shorthand)</i> Creates a new {@link GreaterThanPredicate} matching values <b>greater than</b> {@code object}.
+     *
+     * @param object The given instance to test against
+     */
+    public static GreaterThanPredicate gt(Object object) {
+        return isGreaterThan(object);
+    }
+
+    /**
+     * <i>(alternate)</i> Creates a new {@link GreaterThanPredicate} matching values <b>after</b> {@code object}.
+     *
+     * @param object The given instance to test against
+     */
+    public static GreaterThanPredicate isAfter(Object object) {
+        return isGreaterThan(object);
     }
 
     /**
@@ -43,5 +67,13 @@ public class GreaterThanPredicate implements Predicate<Object> {
         } catch(ClassCastException ignored) {
             return false;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof GreaterThanPredicate && Objects.equals(object, ((GreaterThanPredicate) other).object);
     }
 }

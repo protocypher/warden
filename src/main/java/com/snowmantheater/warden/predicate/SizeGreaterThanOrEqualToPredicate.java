@@ -1,5 +1,6 @@
 package com.snowmantheater.warden.predicate;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import static com.snowmantheater.warden.predicate.Util.getSizeOf;
@@ -13,14 +14,29 @@ import static com.snowmantheater.warden.predicate.Util.getSizeOf;
 public class SizeGreaterThanOrEqualToPredicate implements Predicate<Object> {
     private final int size;
 
+    /* PACKAGE LOCKED */
+    SizeGreaterThanOrEqualToPredicate(int size) {
+        this.size = size;
+    }
+
     /**
      * Creates a new {@link SizeGreaterThanOrEqualToPredicate} matching values with size <b>greater than or equal to</b>
      * {@code size}.
      *
      * @param size The size to test against
      */
-    public SizeGreaterThanOrEqualToPredicate(int size) {
-        this.size = size;
+    public static SizeGreaterThanOrEqualToPredicate isSizeGreaterThanOrEqualTo(int size) {
+        return new SizeGreaterThanOrEqualToPredicate(size);
+    }
+
+    /**
+     * <i>(shorthand)</i> Creates a new {@link SizeGreaterThanOrEqualToPredicate} matching values with size <b>greater
+     * than or equal to</b> {@code size}.
+     *
+     * @param size The size to test against
+     */
+    public static SizeGreaterThanOrEqualToPredicate zge(int size) {
+        return isSizeGreaterThanOrEqualTo(size);
     }
 
     /**
@@ -39,5 +55,14 @@ public class SizeGreaterThanOrEqualToPredicate implements Predicate<Object> {
     @Override
     public boolean test(Object t) {
         return getSizeOf(t).filter(s -> s >= size).isPresent();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof SizeGreaterThanOrEqualToPredicate &&
+            Objects.equals(size, ((SizeGreaterThanOrEqualToPredicate) other).size);
     }
 }

@@ -4,8 +4,19 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Provides common, utility methods for the {@code warden.predicate} package.
+ */
 class Util {
 
+    /**
+     * If {@code value} is an instance of {@link Comparable} then cast and return {@code value} as one. Otherwise an
+     * empty {@link Optional} is returned.
+     *
+     * @param value The value to cast as a Comparable (if possible)
+     *
+     * @return {@code value}, cast as a Comparable
+     */
     @SuppressWarnings("unchecked")
     static Optional<Comparable<Object>> getComparableOf(Object value) {
         if(value instanceof Comparable) {
@@ -15,6 +26,13 @@ class Util {
         }
     }
 
+    /**
+     * Returns the size of {@code value} if it has <i>magnitude</i>. Otherwise an empty {@link Optional} is returned.
+     *
+     * @param value The given value to evaluate the <i>size</i> for
+     *
+     * @return The size of {@code value} if it has magnitude
+     */
     static Optional<Integer> getSizeOf(Object value) {
         if(value == null) { return Optional.empty(); }
 

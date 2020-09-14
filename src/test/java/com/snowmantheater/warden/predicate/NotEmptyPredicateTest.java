@@ -5,221 +5,88 @@ import org.junit.jupiter.api.Test;
 
 import java.util.function.Predicate;
 
+import static com.snowmantheater.warden.predicate.NotEmptyPredicate.isNotEmpty;
+import static com.snowmantheater.warden.predicate.PredicateTestHelper.FALSE;
+import static com.snowmantheater.warden.predicate.PredicateTestHelper.TRUE;
+import static com.snowmantheater.warden.predicate.PredicateTestHelper.apply;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class NotEmptyPredicateTest extends PredicateTest {
     @Test
-    @DisplayName("Testing test(boolean t)")
-    public void testing_test_where_Type_is_boolean() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(BOOL_TRUE));
-        assertFalse(predicate.test(BOOL_FALSE));
+    @DisplayName("Calling test(primitive) ...")
+    public void calling_test_w_primitive_() {
+        assertTrue(apply(isNotEmpty()).to(BOOL_FALSE, BOOL_TRUE).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).to(BYTE_NEG3, BYTE_ZERO, BYTE_POS3).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).to(CHAR_0, CHAR_A, CHAR_Z).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).to(DOUBLE_NEG3, DOUBLE_ZERO, DOUBLE_POS3).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).to(FLOAT_NEG3, FLOAT_ZERO, FLOAT_POS3).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).to(INT_NEG3, INT_ZERO, INT_POS3).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).to(LONG_NEG3, LONG_ZERO, LONG_POS3).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).to(SHORT_NEG3, SHORT_ZERO, SHORT_POS3).allMatch(FALSE));
     }
 
     @Test
-    @DisplayName("Testing test(byte t)")
-    public void testing_test_where_Type_is_byte() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(BYTE_NEG3));
-        assertFalse(predicate.test(BYTE_ZERO));
-        assertFalse(predicate.test(BYTE_POS3));
+    @DisplayName("Calling test(instance) ...")
+    public void calling_test_w_instance_() {
+        assertTrue(apply(isNotEmpty()).to(NUMBER_NULL, NUMBER_NEG3, NUMBER_ZERO, NUMBER_POS3).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).to(OBJECT_NULL, OBJECT_VALUE).allMatch(FALSE));
     }
 
     @Test
-    @DisplayName("Testing test(char t)")
-    public void testing_test_where_Type_is_char() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(CHAR_0));
-        assertFalse(predicate.test(CHAR_A));
-        assertFalse(predicate.test(CHAR_Z));
+    @DisplayName("Calling test(String) ...")
+    public void calling_test_w_String_() {
+        assertTrue(apply(isNotEmpty()).to(STRING_NULL, STRING_EMPTY).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).to(STRING_ABC, STRING_XYZ).allMatch(TRUE));
     }
 
     @Test
-    @DisplayName("Testing test(double t)")
-    public void testing_test_where_Type_is_double() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(DOUBLE_NEG3));
-        assertFalse(predicate.test(DOUBLE_ZERO));
-        assertFalse(predicate.test(DOUBLE_POS3));
+    @DisplayName("Calling test(Collection) ...")
+    public void calling_test_w_Collection_() {
+        assertTrue(apply(isNotEmpty()).to(LIST_NULL, LIST_EMPTY).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).to(LIST_VALUE).allMatch(TRUE));
+
+        assertTrue(apply(isNotEmpty()).to(MAP_NULL, MAP_EMPTY).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).to(MAP_VALUE).allMatch(TRUE));
+
+        assertTrue(apply(isNotEmpty()).to(SET_NULL, SET_EMPTY).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).to(SET_VALUE).allMatch(TRUE));
     }
 
     @Test
-    @DisplayName("Testing test(float t)")
-    public void testing_test_where_Type_is_float() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(FLOAT_NEG3));
-        assertFalse(predicate.test(FLOAT_ZERO));
-        assertFalse(predicate.test(FLOAT_POS3));
+    @DisplayName("Calling test(array) ...")
+    public void calling_test_w_array_() {
+        assertTrue(apply(isNotEmpty()).to(ARRAY_OBJECT_NULL, ARRAY_OBJECT_EMPTY).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).toOne(ARRAY_OBJECT_VALUE).allMatch(TRUE));
+
+        assertTrue(apply(isNotEmpty()).to(ARRAY_BOOL_NULL, ARRAY_BOOL_EMPTY).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).toOne(ARRAY_BOOL_VALUE).allMatch(TRUE));
+
+        assertTrue(apply(isNotEmpty()).to(ARRAY_BYTE_NULL, ARRAY_BYTE_EMPTY).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).toOne(ARRAY_BYTE_VALUE).allMatch(TRUE));
+
+        assertTrue(apply(isNotEmpty()).to(ARRAY_CHAR_NULL, ARRAY_CHAR_EMPTY).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).toOne(ARRAY_CHAR_VALUE).allMatch(TRUE));
+
+        assertTrue(apply(isNotEmpty()).to(ARRAY_DOUBLE_NULL, ARRAY_DOUBLE_EMPTY).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).toOne(ARRAY_DOUBLE_VALUE).allMatch(TRUE));
+
+        assertTrue(apply(isNotEmpty()).to(ARRAY_FLOAT_NULL, ARRAY_FLOAT_EMPTY).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).toOne(ARRAY_FLOAT_VALUE).allMatch(TRUE));
+
+        assertTrue(apply(isNotEmpty()).to(ARRAY_INT_NULL, ARRAY_INT_EMPTY).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).toOne(ARRAY_INT_VALUE).allMatch(TRUE));
+
+        assertTrue(apply(isNotEmpty()).to(ARRAY_LONG_NULL, ARRAY_LONG_EMPTY).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).toOne(ARRAY_LONG_VALUE).allMatch(TRUE));
+
+        assertTrue(apply(isNotEmpty()).to(ARRAY_SHORT_NULL, ARRAY_SHORT_EMPTY).allMatch(FALSE));
+        assertTrue(apply(isNotEmpty()).toOne(ARRAY_SHORT_VALUE).allMatch(TRUE));
     }
 
     @Test
-    @DisplayName("Testing test(int t)")
-    public void testing_test_where_Type_is_int() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(INT_NEG3));
-        assertFalse(predicate.test(INT_ZERO));
-        assertFalse(predicate.test(INT_POS3));
-    }
-
-    @Test
-    @DisplayName("Testing test(long t)")
-    public void testing_test_where_Type_is_long() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(LONG_NEG3));
-        assertFalse(predicate.test(LONG_ZERO));
-        assertFalse(predicate.test(LONG_POS3));
-    }
-
-    @Test
-    @DisplayName("Testing test(short t)")
-    public void testing_test_where_Type_is_short() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(SHORT_NEG3));
-        assertFalse(predicate.test(SHORT_ZERO));
-        assertFalse(predicate.test(SHORT_POS3));
-    }
-
-    @Test
-    @DisplayName("Testing test(Number t)")
-    public void testing_test_where_Type_is_Number() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(NUMBER_NULL));
-        assertFalse(predicate.test(NUMBER_NEG3));
-        assertFalse(predicate.test(NUMBER_ZERO));
-        assertFalse(predicate.test(NUMBER_POS3));
-    }
-
-    @Test
-    @DisplayName("Testing test(Object t)")
-    public void testing_test_where_Type_is_Object() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(OBJECT_NULL));
-        assertFalse(predicate.test(OBJECT_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(String t)")
-    public void testing_test_where_Type_is_String() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(STRING_NULL));
-        assertFalse(predicate.test(STRING_EMPTY));
-        assertTrue(predicate.test(STRING_ABC));
-        assertTrue(predicate.test(STRING_XYZ));
-    }
-
-    @Test
-    @DisplayName("Testing test(List t)")
-    public void testing_test_where_Type_is_List() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(LIST_NULL));
-        assertFalse(predicate.test(LIST_EMPTY));
-        assertTrue(predicate.test(LIST_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(Map t)")
-    public void testing_test_where_Type_is_Map() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(MAP_NULL));
-        assertFalse(predicate.test(MAP_EMPTY));
-        assertTrue(predicate.test(MAP_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(Set t)")
-    public void testing_test_where_Type_is_Set() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(SET_NULL));
-        assertFalse(predicate.test(SET_EMPTY));
-        assertTrue(predicate.test(SET_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(Object[] t)")
-    public void testing_test_where_Type_is_ObjectArr() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(ARRAY_OBJECT_NULL));
-        assertFalse(predicate.test(ARRAY_OBJECT_EMPTY));
-        assertTrue(predicate.test(ARRAY_OBJECT_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(boolean[] t)")
-    public void testing_test_where_Type_is_booleanArr() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(ARRAY_BOOL_NULL));
-        assertFalse(predicate.test(ARRAY_BOOL_EMPTY));
-        assertTrue(predicate.test(ARRAY_BOOL_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(byte[] t)")
-    public void testing_test_where_Type_is_byteArr() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(ARRAY_BYTE_NULL));
-        assertFalse(predicate.test(ARRAY_BYTE_EMPTY));
-        assertTrue(predicate.test(ARRAY_BYTE_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(char[] t)")
-    public void testing_test_where_Type_is_charArr() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(ARRAY_CHAR_NULL));
-        assertFalse(predicate.test(ARRAY_CHAR_EMPTY));
-        assertTrue(predicate.test(ARRAY_CHAR_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(double[] t)")
-    public void testing_test_where_Type_is_doubleArr() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(ARRAY_DOUBLE_NULL));
-        assertFalse(predicate.test(ARRAY_DOUBLE_EMPTY));
-        assertTrue(predicate.test(ARRAY_DOUBLE_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(float[] t)")
-    public void testing_test_where_Type_is_floatArr() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(ARRAY_FLOAT_NULL));
-        assertFalse(predicate.test(ARRAY_FLOAT_EMPTY));
-        assertTrue(predicate.test(ARRAY_FLOAT_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(int[] t)")
-    public void testing_test_where_Type_is_intArr() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(ARRAY_INT_NULL));
-        assertFalse(predicate.test(ARRAY_INT_EMPTY));
-        assertTrue(predicate.test(ARRAY_INT_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(long[] t)")
-    public void testing_test_where_Type_is_longArr() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(ARRAY_LONG_NULL));
-        assertFalse(predicate.test(ARRAY_LONG_EMPTY));
-        assertTrue(predicate.test(ARRAY_LONG_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(short[] t)")
-    public void testing_test_where_Type_is_shortArr() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
-        assertFalse(predicate.test(ARRAY_SHORT_NULL));
-        assertFalse(predicate.test(ARRAY_SHORT_EMPTY));
-        assertTrue(predicate.test(ARRAY_SHORT_VALUE));
-    }
-
-    @Test
-    @DisplayName("Calling negate() returns instanceof AssertEmpty")
-    public void calling_negate_returns_instanceof_AssertEmpty() {
+    @DisplayName("Calling negate() returns NotEmptyPredicate")
+    public void calling_negate_returns_NotEmptyPredicate() {
         Predicate<Object> predicate = new NotEmptyPredicate();
         Predicate<Object> negated = predicate.negate();
         assertEquals(EmptyPredicate.class, negated.getClass());
