@@ -14,6 +14,7 @@ import static com.snowmantheater.warden.predicate.Util.getSizeOf;
 public class SizeLessThanPredicate implements Predicate<Object> {
     private final int size;
 
+    /* PACKAGE LOCKED */
     SizeLessThanPredicate(int size) {
         this.size = size;
     }

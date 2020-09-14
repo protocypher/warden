@@ -56,6 +56,10 @@ public class SizeGreaterThanPredicate implements Predicate<Object> {
         return getSizeOf(t).filter(s -> s > size).isPresent();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean equals(Object other) {
         return other instanceof SizeGreaterThanPredicate &&
             Objects.equals(size, ((SizeGreaterThanPredicate) other).size);

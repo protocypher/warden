@@ -15,7 +15,7 @@ public class LessThanPredicate implements Predicate<Object> {
     private final Object object;
 
     /* PACKAGE LOCKED */
-    public LessThanPredicate(Object object) {
+    LessThanPredicate(Object object) {
         this.object = requireNonNull(object, "object is null");
     }
 
