@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import java.util.function.Predicate;
 
+import static com.snowmantheater.warden.predicate.GreaterThanPredicate.isAfter;
 import static com.snowmantheater.warden.predicate.GreaterThanPredicate.isGreaterThan;
 import static com.snowmantheater.warden.predicate.PredicateTestHelper.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,9 +27,9 @@ class GreaterThanPredicateTest {
         assertTrue(apply(isGreaterThan((byte)0)).to(BYTE_NEG3, BYTE_ZERO).allMatch(FALSE));
         assertTrue(apply(isGreaterThan((char)0)).to(BYTE_NEG3, BYTE_ZERO, BYTE_POS3).allMatch(FALSE));
 
-        assertTrue(apply(isGreaterThan('M')).to(CHAR_Z).allMatch(TRUE));
-        assertTrue(apply(isGreaterThan('M')).to(CHAR_A, CHAR_M).allMatch(FALSE));
-        assertTrue(apply(isGreaterThan(false)).to(CHAR_A, CHAR_M, CHAR_Z).allMatch(FALSE));
+        assertTrue(apply(isAfter('M')).to(CHAR_Z).allMatch(TRUE));
+        assertTrue(apply(isAfter('M')).to(CHAR_A, CHAR_M).allMatch(FALSE));
+        assertTrue(apply(isAfter(false)).to(CHAR_A, CHAR_M, CHAR_Z).allMatch(FALSE));
 
         assertTrue(apply(isGreaterThan(0D)).to(DOUBLE_POS3).allMatch(TRUE));
         assertTrue(apply(isGreaterThan(0D)).to(DOUBLE_NEG3, DOUBLE_ZERO).allMatch(FALSE));
@@ -74,8 +74,8 @@ class GreaterThanPredicateTest {
     @Test
     @DisplayName("Calling test(String) ...")
     public void calling_test_w_String_() {
-        assertTrue(apply(isGreaterThan("ABC")).to(STRING_XYZ).allMatch(TRUE));
-        assertTrue(apply(isGreaterThan("ABC")).to(STRING_NULL, STRING_EMPTY, STRING_ABC).allMatch(FALSE));
+        assertTrue(apply(isAfter("ABC")).to(STRING_XYZ).allMatch(TRUE));
+        assertTrue(apply(isAfter("ABC")).to(STRING_NULL, STRING_EMPTY, STRING_ABC).allMatch(FALSE));
     }
 
     @Test
@@ -103,7 +103,7 @@ class GreaterThanPredicateTest {
     @Test
     @DisplayName("Calling negate() returns LessThanOrEqualToPredicate")
     public void calling_negate_returns_LessThanOrEqualToPredicate() {
-        Predicate<Object> predicate = new GreaterThanPredicate(0);
+        Predicate<Object> predicate = isGreaterThan(0);
         Predicate<Object> negated = predicate.negate();
         assertEquals(LessThanOrEqualToPredicate.class, negated.getClass());
     }

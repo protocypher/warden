@@ -6,296 +6,104 @@ import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import java.util.function.Predicate;
 
+import static com.snowmantheater.warden.predicate.LessThanOrEqualToPredicate.isBeforeOrAt;
+import static com.snowmantheater.warden.predicate.LessThanOrEqualToPredicate.isLessThanOrEqualTo;
 import static com.snowmantheater.warden.predicate.PredicateTestHelper.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LessThanOrEqualToPredicateTest {
     @Test
-    @DisplayName("Testing test(boolean t)")
-    public void testing_test_where_Type_is_boolean() {
-        Predicate<Object> predicate;
+    @DisplayName("Calling test(primitive) ...")
+    public void calling_test_w_primitive_() {
+        assertTrue(apply(isLessThanOrEqualTo(true)).to(BOOL_FALSE, BOOL_TRUE).allMatch(TRUE));
+        assertTrue(apply(isLessThanOrEqualTo(false)).to(BOOL_FALSE).allMatch(TRUE));
+        assertTrue(apply(isLessThanOrEqualTo(false)).to(BOOL_TRUE).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(0)).to(BOOL_FALSE, BOOL_TRUE).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(1)).to(BOOL_FALSE, BOOL_TRUE).allMatch(FALSE));
 
-        predicate = new LessThanOrEqualToPredicate(true);
-        assertTrue(predicate.test(BOOL_TRUE));
-        assertTrue(predicate.test(BOOL_FALSE));
+        assertTrue(apply(isLessThanOrEqualTo((byte)0)).to(BYTE_NEG3, BYTE_ZERO).allMatch(TRUE));
+        assertTrue(apply(isLessThanOrEqualTo((byte)0)).to(BYTE_POS3).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo((char)0)).to(BYTE_NEG3, BYTE_ZERO, BYTE_POS3).allMatch(FALSE));
 
-        predicate = new LessThanOrEqualToPredicate(false);
-        assertFalse(predicate.test(BOOL_TRUE));
-        assertTrue(predicate.test(BOOL_FALSE));
+        assertTrue(apply(isBeforeOrAt('M')).to(CHAR_A, CHAR_M).allMatch(TRUE));
+        assertTrue(apply(isBeforeOrAt('M')).to(CHAR_Z).allMatch(FALSE));
+        assertTrue(apply(isBeforeOrAt(false)).to(CHAR_A, CHAR_M, CHAR_Z).allMatch(FALSE));
 
-        predicate = new LessThanOrEqualToPredicate(0);
-        assertFalse(predicate.test(BOOL_TRUE));
-        assertFalse(predicate.test(BOOL_FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(0D)).to(DOUBLE_NEG3, DOUBLE_ZERO).allMatch(TRUE));
+        assertTrue(apply(isLessThanOrEqualTo(0D)).to(DOUBLE_POS3).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(false)).to(DOUBLE_NEG3, DOUBLE_ZERO, DOUBLE_POS3).allMatch(FALSE));
 
-        predicate = new LessThanOrEqualToPredicate(1);
-        assertFalse(predicate.test(BOOL_TRUE));
-        assertFalse(predicate.test(BOOL_FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(0F)).to(FLOAT_NEG3, FLOAT_ZERO).allMatch(TRUE));
+        assertTrue(apply(isLessThanOrEqualTo(0F)).to(FLOAT_POS3).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(false)).to(FLOAT_NEG3, FLOAT_ZERO, FLOAT_POS3).allMatch(FALSE));
+
+        assertTrue(apply(isLessThanOrEqualTo(0)).to(INT_NEG3, INT_ZERO).allMatch(TRUE));
+        assertTrue(apply(isLessThanOrEqualTo(0)).to(INT_POS3).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo((char)0)).to(INT_NEG3, INT_ZERO, INT_POS3).allMatch(FALSE));
+
+        assertTrue(apply(isLessThanOrEqualTo(0L)).to(LONG_NEG3, LONG_ZERO).allMatch(TRUE));
+        assertTrue(apply(isLessThanOrEqualTo(0L)).to(LONG_POS3).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo((char)0)).to(LONG_NEG3, LONG_ZERO, LONG_POS3).allMatch(FALSE));
+
+        assertTrue(apply(isLessThanOrEqualTo((short)0)).to(SHORT_NEG3, SHORT_ZERO).allMatch(TRUE));
+        assertTrue(apply(isLessThanOrEqualTo((short)0)).to(SHORT_POS3).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(false)).to(SHORT_NEG3, SHORT_ZERO, SHORT_POS3).allMatch(FALSE));
     }
 
     @Test
-    @DisplayName("Testing test(byte t)")
-    public void testing_test_where_Type_is_byte() {
-        Predicate<Object> predicate;
-
-        predicate = new LessThanOrEqualToPredicate((byte)0);
-        assertTrue(predicate.test(BYTE_NEG3));
-        assertTrue(predicate.test(BYTE_ZERO));
-        assertFalse(predicate.test(BYTE_POS3));
-
-        predicate = new LessThanOrEqualToPredicate((char)0);
-        assertFalse(predicate.test(BYTE_NEG3));
-        assertFalse(predicate.test(BYTE_ZERO));
-        assertFalse(predicate.test(BYTE_POS3));
-    }
-
-    @Test
-    @DisplayName("Testing test(char t)")
-    public void testing_test_where_Type_is_char() {
-        Predicate<Object> predicate;
-
-        predicate = new LessThanOrEqualToPredicate('M');
-        assertTrue(predicate.test(CHAR_A));
-        assertTrue(predicate.test(CHAR_M));
-        assertFalse(predicate.test(CHAR_Z));
-
-        predicate = new LessThanOrEqualToPredicate(false);
-        assertFalse(predicate.test(CHAR_A));
-        assertFalse(predicate.test(CHAR_M));
-        assertFalse(predicate.test(CHAR_Z));
-    }
-
-    @Test
-    @DisplayName("Testing test(double t)")
-    public void testing_test_where_Type_is_double() {
-        Predicate<Object> predicate;
-
-        predicate = new LessThanOrEqualToPredicate(0D);
-        assertTrue(predicate.test(DOUBLE_NEG3));
-        assertTrue(predicate.test(DOUBLE_ZERO));
-        assertFalse(predicate.test(DOUBLE_POS3));
-
-        predicate = new LessThanOrEqualToPredicate(false);
-        assertFalse(predicate.test(DOUBLE_NEG3));
-        assertFalse(predicate.test(DOUBLE_ZERO));
-        assertFalse(predicate.test(DOUBLE_POS3));
-    }
-
-    @Test
-    @DisplayName("Testing test(float t)")
-    public void testing_test_where_Type_is_float() {
-        Predicate<Object> predicate;
-
-        predicate = new LessThanOrEqualToPredicate(0F);
-        assertTrue(predicate.test(FLOAT_NEG3));
-        assertTrue(predicate.test(FLOAT_ZERO));
-        assertFalse(predicate.test(FLOAT_POS3));
-
-        predicate = new LessThanOrEqualToPredicate(false);
-        assertFalse(predicate.test(FLOAT_NEG3));
-        assertFalse(predicate.test(FLOAT_ZERO));
-        assertFalse(predicate.test(FLOAT_POS3));
-    }
-
-    @Test
-    @DisplayName("Testing test(int t)")
-    public void testing_test_where_Type_is_int() {
-        Predicate<Object> predicate;
-
-        predicate = new LessThanOrEqualToPredicate(0);
-        assertTrue(predicate.test(INT_NEG3));
-        assertTrue(predicate.test(INT_ZERO));
-        assertFalse(predicate.test(INT_POS3));
-
-        predicate = new LessThanOrEqualToPredicate((char)0);
-        assertFalse(predicate.test(INT_NEG3));
-        assertFalse(predicate.test(INT_ZERO));
-        assertFalse(predicate.test(INT_POS3));
-    }
-
-    @Test
-    @DisplayName("Testing test(long t)")
-    public void testing_test_where_Type_is_long() {
-        Predicate<Object> predicate;
-
-        predicate = new LessThanOrEqualToPredicate(0L);
-        assertTrue(predicate.test(LONG_NEG3));
-        assertTrue(predicate.test(LONG_ZERO));
-        assertFalse(predicate.test(LONG_POS3));
-
-        predicate = new LessThanOrEqualToPredicate((char)0);
-        assertFalse(predicate.test(LONG_NEG3));
-        assertFalse(predicate.test(LONG_ZERO));
-        assertFalse(predicate.test(LONG_POS3));
-    }
-
-    @Test
-    @DisplayName("Testing test(short t)")
-    public void testing_test_where_Type_is_short() {
-        Predicate<Object> predicate;
-
-        predicate = new LessThanOrEqualToPredicate((short)0);
-        assertTrue(predicate.test(SHORT_NEG3));
-        assertTrue(predicate.test(SHORT_ZERO));
-        assertFalse(predicate.test(SHORT_POS3));
-
-        predicate = new LessThanOrEqualToPredicate(false);
-        assertFalse(predicate.test(SHORT_NEG3));
-        assertFalse(predicate.test(SHORT_ZERO));
-        assertFalse(predicate.test(SHORT_POS3));
-    }
-
-    @Test
-    @DisplayName("Calling new(null) throws Exception")
-    public void calling_new_null_throws_Exception() {
+    @DisplayName("Calling isLessThanOrEqualTo(null) throws NPE")
+    public void calling_isLessTHanOrEqualTo_w_null_throws_NPE() {
+        //noinspection ResultOfMethodCallIgnored
         assertThrows(
             NullPointerException.class,
-            () -> new LessThanOrEqualToPredicate(null)
+            () -> isLessThanOrEqualTo(null)
         );
     }
 
     @Test
-    @DisplayName("Testing test(Number t)")
-    public void testing_test_where_Type_is_Number() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(0);
-        assertFalse(predicate.test(NUMBER_NULL));
-        assertTrue(predicate.test(NUMBER_NEG3));
-        assertTrue(predicate.test(NUMBER_ZERO));
-        assertFalse(predicate.test(NUMBER_POS3));
+    @DisplayName("Calling test(instance) ...")
+    public void calling_test_w_instance_() {
+        assertTrue(apply(isLessThanOrEqualTo(0)).to(NUMBER_NEG3, NUMBER_ZERO).allMatch(TRUE));
+        assertTrue(apply(isLessThanOrEqualTo(0)).to(NUMBER_NULL, NUMBER_POS3).allMatch(FALSE));
+
+        assertTrue(apply(isLessThanOrEqualTo(OBJECT_VALUE)).to(OBJECT_NULL, OBJECT_VALUE).allMatch(FALSE));
     }
 
     @Test
-    @DisplayName("Testing test(Object t)")
-    public void testing_test_where_Type_is_Object() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(OBJECT_VALUE);
-        assertFalse(predicate.test(OBJECT_NULL));
-        assertFalse(predicate.test(OBJECT_VALUE));
+    @DisplayName("Calling test(String) ...")
+    public void calling_test_w_String_() {
+        assertTrue(apply(isBeforeOrAt("ABC")).to(STRING_EMPTY, STRING_ABC).allMatch(TRUE));
+        assertTrue(apply(isBeforeOrAt("ABC")).to(STRING_NULL, STRING_XYZ).allMatch(FALSE));
     }
 
     @Test
-    @DisplayName("Testing test(String t)")
-    public void testing_test_where_Type_is_String() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate("XYZ");
-        assertFalse(predicate.test(STRING_NULL));
-        assertTrue(predicate.test(STRING_EMPTY));
-        assertTrue(predicate.test(STRING_ABC));
-        assertTrue(predicate.test(STRING_XYZ));
+    @DisplayName("Calling test(Collection) ...")
+    public void calling_test_w_Collection_() {
+        assertTrue(apply(isLessThanOrEqualTo(Collections.emptyList())).to(LIST_NULL, LIST_EMPTY, LIST_VALUE).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(Collections.emptyMap())).to(MAP_NULL, MAP_EMPTY, MAP_VALUE).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(Collections.emptySet())).to(SET_NULL, SET_EMPTY, SET_VALUE).allMatch(FALSE));
     }
 
     @Test
-    @DisplayName("Testing test(List t)")
-    public void testing_test_where_Type_is_List() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(Collections.emptyList());
-        assertFalse(predicate.test(LIST_NULL));
-        assertFalse(predicate.test(LIST_EMPTY));
-        assertFalse(predicate.test(LIST_VALUE));
+    @DisplayName("Calling test(array) ...")
+    public void calling_test_w_array_() {
+        assertTrue(apply(isLessThanOrEqualTo(new Object[] { })).to(ARRAY_OBJECT_NULL, ARRAY_OBJECT_EMPTY, ARRAY_OBJECT_VALUE).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(new boolean[] { })).to(ARRAY_BOOL_NULL, ARRAY_BOOL_EMPTY, ARRAY_BOOL_VALUE).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(new byte[] { })).to(ARRAY_BYTE_NULL, ARRAY_BYTE_EMPTY, ARRAY_BYTE_VALUE).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(new char[] { })).to(ARRAY_CHAR_NULL, ARRAY_CHAR_EMPTY, ARRAY_CHAR_VALUE).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(new double[] { })).to(ARRAY_DOUBLE_NULL, ARRAY_DOUBLE_EMPTY, ARRAY_DOUBLE_VALUE).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(new float[] { })).to(ARRAY_FLOAT_NULL, ARRAY_FLOAT_EMPTY, ARRAY_FLOAT_VALUE).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(new int[] { })).to(ARRAY_INT_NULL, ARRAY_INT_EMPTY, ARRAY_INT_VALUE).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(new long[] { })).to(ARRAY_LONG_NULL, ARRAY_LONG_EMPTY, ARRAY_LONG_VALUE).allMatch(FALSE));
+        assertTrue(apply(isLessThanOrEqualTo(new short[] { })).to(ARRAY_SHORT_NULL, ARRAY_SHORT_EMPTY, ARRAY_SHORT_VALUE).allMatch(FALSE));
     }
 
     @Test
-    @DisplayName("Testing test(Map t)")
-    public void testing_test_where_Type_is_Map() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(Collections.emptyMap());
-        assertFalse(predicate.test(MAP_NULL));
-        assertFalse(predicate.test(MAP_EMPTY));
-        assertFalse(predicate.test(MAP_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(Set t)")
-    public void testing_test_where_Type_is_Set() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(Collections.emptySet());
-        assertFalse(predicate.test(SET_NULL));
-        assertFalse(predicate.test(SET_EMPTY));
-        assertFalse(predicate.test(SET_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(Object[] t)")
-    public void testing_test_where_Type_is_ObjectArr() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(new Object[] { });
-        assertFalse(predicate.test(ARRAY_OBJECT_NULL));
-        assertFalse(predicate.test(ARRAY_OBJECT_EMPTY));
-        assertFalse(predicate.test(ARRAY_OBJECT_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(boolean[] t)")
-    public void testing_test_where_Type_is_booleanArr() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(new boolean[] { });
-        assertFalse(predicate.test(ARRAY_BOOL_NULL));
-        assertFalse(predicate.test(ARRAY_BOOL_EMPTY));
-        assertFalse(predicate.test(ARRAY_BOOL_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(byte[] t)")
-    public void testing_test_where_Type_is_byteArr() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(new byte[] { });
-        assertFalse(predicate.test(ARRAY_BYTE_NULL));
-        assertFalse(predicate.test(ARRAY_BYTE_EMPTY));
-        assertFalse(predicate.test(ARRAY_BYTE_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(char[] t)")
-    public void testing_test_where_Type_is_charArr() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(new char[] { });
-        assertFalse(predicate.test(ARRAY_CHAR_NULL));
-        assertFalse(predicate.test(ARRAY_CHAR_EMPTY));
-        assertFalse(predicate.test(ARRAY_CHAR_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(double[] t)")
-    public void testing_test_where_Type_is_doubleArr() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(new double[] { });
-        assertFalse(predicate.test(ARRAY_DOUBLE_NULL));
-        assertFalse(predicate.test(ARRAY_DOUBLE_EMPTY));
-        assertFalse(predicate.test(ARRAY_DOUBLE_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(float[] t)")
-    public void testing_test_where_Type_is_floatArr() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(new float[] { });
-        assertFalse(predicate.test(ARRAY_FLOAT_NULL));
-        assertFalse(predicate.test(ARRAY_FLOAT_EMPTY));
-        assertFalse(predicate.test(ARRAY_FLOAT_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(int[] t)")
-    public void testing_test_where_Type_is_intArr() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(new int[] { });
-        assertFalse(predicate.test(ARRAY_INT_NULL));
-        assertFalse(predicate.test(ARRAY_INT_EMPTY));
-        assertFalse(predicate.test(ARRAY_INT_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(long[] t)")
-    public void testing_test_where_Type_is_longArr() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(new long[] { });
-        assertFalse(predicate.test(ARRAY_LONG_NULL));
-        assertFalse(predicate.test(ARRAY_LONG_EMPTY));
-        assertFalse(predicate.test(ARRAY_LONG_VALUE));
-    }
-
-    @Test
-    @DisplayName("Testing test(short[] t)")
-    public void testing_test_where_Type_is_shortArr() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(new short[] { });
-        assertFalse(predicate.test(ARRAY_SHORT_NULL));
-        assertFalse(predicate.test(ARRAY_SHORT_EMPTY));
-        assertFalse(predicate.test(ARRAY_SHORT_VALUE));
-    }
-
-    @Test
-    @DisplayName("Calling negate() returns instanceof AssertGreaterThan")
-    public void calling_negate_returns_instanceof_AssertGreaterThan() {
-        Predicate<Object> predicate = new LessThanOrEqualToPredicate(0);
+    @DisplayName("Calling negate() returns GreaterThanPredicate")
+    public void calling_negate_returns_GreaterThanPredicate() {
+        Predicate<Object> predicate = isLessThanOrEqualTo(0);
         Predicate<Object> negated = predicate.negate();
         assertEquals(GreaterThanPredicate.class, negated.getClass());
     }

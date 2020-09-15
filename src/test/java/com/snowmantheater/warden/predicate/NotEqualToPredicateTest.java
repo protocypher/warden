@@ -118,7 +118,7 @@ class NotEqualToPredicateTest {
     @Test
     @DisplayName("Calling negate() returns EqualToPredicate")
     public void calling_negate_returns_EqualToPredicate() {
-        Predicate<Object> predicate = new NotEqualToPredicate(0);
+        Predicate<Object> predicate = isNotEqualTo(0);
         Predicate<Object> negated = predicate.negate();
         assertEquals(EqualToPredicate.class, negated.getClass());
     }

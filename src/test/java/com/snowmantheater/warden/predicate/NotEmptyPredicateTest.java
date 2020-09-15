@@ -85,7 +85,7 @@ class NotEmptyPredicateTest {
     @Test
     @DisplayName("Calling negate() returns NotEmptyPredicate")
     public void calling_negate_returns_NotEmptyPredicate() {
-        Predicate<Object> predicate = new NotEmptyPredicate();
+        Predicate<Object> predicate = isNotEmpty();
         Predicate<Object> negated = predicate.negate();
         assertEquals(EmptyPredicate.class, negated.getClass());
     }
