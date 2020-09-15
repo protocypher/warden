@@ -40,6 +40,16 @@ public class LessThanOrEqualToPredicate implements Predicate<Object> {
     }
 
     /**
+     * <i>(alternate)</i> Creates a new {@link LessThanOrEqualToPredicate} matching values <b>before or at</b>
+     * {@code object}.
+     *
+     * @param object The given instance to test against
+     */
+    public static LessThanOrEqualToPredicate isBeforeOrAt(Object object) {
+        return isLessThanOrEqualTo(object);
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @see GreaterThanPredicate

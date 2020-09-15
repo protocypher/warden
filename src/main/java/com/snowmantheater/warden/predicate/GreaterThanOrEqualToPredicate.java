@@ -41,6 +41,16 @@ public class GreaterThanOrEqualToPredicate implements Predicate<Object> {
     }
 
     /**
+     * <i>(alternate)</i> Creates a new {@link GreaterThanOrEqualToPredicate} matching values <b>after or at</b>
+     * {@code object}.
+     *
+     * @param object The given instance to test against
+     */
+    public static GreaterThanOrEqualToPredicate isAfterOrAt(Object object) {
+        return isGreaterThanOrEqualTo(object);
+    }
+
+    /**
      * {@inheritDoc}
      *
      * @see LessThanPredicate
