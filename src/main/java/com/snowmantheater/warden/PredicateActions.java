@@ -11,23 +11,23 @@ import static java.util.Objects.requireNonNull;
  */
 public class PredicateActions {
     private final Object value;
-    private final boolean matches;
+    private final boolean matching;
     private final RejectionMessages messages;
 
     /**
-     * Creates a new {@link PredicateActions} to execute on {@code value} if it {@code matches} a {@code Predicate}
+     * Creates a new {@link PredicateActions} to execute on {@code value} if it {@code matching} a {@code Predicate}
      * test. Rejection messages to exceptions or callers are provided by {@code messages}.
      *
      * @param value The value under scrutiny
-     * @param matches Whether value matches the Predicate test
+     * @param matching Whether value matches the Predicate test
      * @param messages The source of messages for expressing rejection
      *
      * @throws NullPointerException If messages is null
      */
-    private PredicateActions(Object value, RejectionMessages messages, boolean matches) {
+    private PredicateActions(Object value, RejectionMessages messages, boolean matching) {
         this.value = value;
         this.messages = messages;
-        this.matches = matches;
+        this.matching = matching;
     }
 
     /**
@@ -57,13 +57,22 @@ public class PredicateActions {
     }
 
     /**
+     * Returns whether this PredicateActions is matching or not.
+     *
+     * @return Whether this PredicateActions is matching or not
+     */
+    public boolean isMatching() {
+        return matching;
+    }
+
+    /**
      * If {@code value} matches the Predicate test, then reject it by throwing a {@link RejectionException} with a
      * basic message.
      *
      * @throws RejectionException If value matches the Predicate test
      */
     public void reject() {
-        if(matches) {
+        if(matching) {
             throw new RejectionException(value, messages.create());
         }
     }
@@ -76,8 +85,8 @@ public class PredicateActions {
      *
      * @throws RejectionException If value matches the Predicate test
      */
-    public void reject(String reason) {
-        if(matches) {
+    public void rejectWith(String reason) {
+        if(matching) {
             throw new RejectionException(value, messages.createWith(reason));
         }
     }
@@ -90,8 +99,8 @@ public class PredicateActions {
      *
      * @throws RejectionException If value matches the Predicate test
      */
-    public void reject(Throwable cause) {
-        if(matches) {
+    public void rejectFor(Throwable cause) {
+        if(matching) {
             throw new RejectionException(value, messages.createFor(cause), cause);
         }
     }
@@ -103,7 +112,7 @@ public class PredicateActions {
      * @throws RejectionException If value did <b>not</b> match the Predicate test
      */
     public void accept() {
-        if(!matches) {
+        if(!matching) {
             throw new RejectionException(value, messages.create());
         }
     }
@@ -117,7 +126,7 @@ public class PredicateActions {
      * @throws X If value matches the Predicate test
      */
     public <X extends Throwable> void raise(Supplier<? extends X> supplier) throws X {
-        if(matches) {
+        if(matching) {
             throw supplier.get();
         }
     }
@@ -128,7 +137,7 @@ public class PredicateActions {
      * @param action The Consumer to execute on value if it matches the Predicate test
      */
     public void perform(Consumer<Object> action) {
-        if(matches) {
+        if(matching) {
             action.accept(value);
         }
     }
@@ -141,7 +150,7 @@ public class PredicateActions {
      * @param alternate The Consumer to execute on value if it <b>does not</b> match the Predicate test
      */
     public void performOrElse(Consumer<Object> action, Consumer<Object> alternate) {
-        if(matches) {
+        if(matching) {
             action.accept(value);
         } else {
             alternate.accept(value);
