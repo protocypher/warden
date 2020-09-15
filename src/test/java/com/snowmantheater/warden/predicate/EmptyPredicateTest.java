@@ -6,13 +6,11 @@ import org.junit.jupiter.api.Test;
 import java.util.function.Predicate;
 
 import static com.snowmantheater.warden.predicate.EmptyPredicate.isEmpty;
-import static com.snowmantheater.warden.predicate.PredicateTestHelper.FALSE;
-import static com.snowmantheater.warden.predicate.PredicateTestHelper.TRUE;
-import static com.snowmantheater.warden.predicate.PredicateTestHelper.apply;
+import static com.snowmantheater.warden.predicate.PredicateTestHelper.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class EmptyPredicateTest extends PredicateTest {
+class EmptyPredicateTest {
     @Test
     @DisplayName("Calling test(primitive) ...")
     public void calling_test_w_primitive_() {

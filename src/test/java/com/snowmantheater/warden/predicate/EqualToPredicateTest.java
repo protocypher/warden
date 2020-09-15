@@ -7,13 +7,11 @@ import java.util.Collections;
 import java.util.function.Predicate;
 
 import static com.snowmantheater.warden.predicate.EqualToPredicate.isEqualTo;
-import static com.snowmantheater.warden.predicate.PredicateTestHelper.FALSE;
-import static com.snowmantheater.warden.predicate.PredicateTestHelper.TRUE;
-import static com.snowmantheater.warden.predicate.PredicateTestHelper.apply;
+import static com.snowmantheater.warden.predicate.PredicateTestHelper.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class EqualToPredicateTest extends PredicateTest {
+class EqualToPredicateTest {
     @Test
     @DisplayName("Calling test(primitive) ...")
     public void calling_test_w_primitive_() {

@@ -6,12 +6,13 @@ import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import java.util.function.Predicate;
 
+import static com.snowmantheater.warden.predicate.PredicateTestHelper.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class GreaterThanOrEqualToPredicateTest extends PredicateTest {
+class GreaterThanOrEqualToPredicateTest {
     @Test
     @DisplayName("Testing test(boolean t)")
     public void testing_test_where_Type_is_boolean() {

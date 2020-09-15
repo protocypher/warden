@@ -3,10 +3,11 @@ package com.snowmantheater.warden.predicate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static com.snowmantheater.warden.predicate.PredicateTestHelper.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class UtilTest extends PredicateTest {
+class UtilTest {
     @Test
     @DisplayName("Calling getSizeOf(boolean) returns EMPTY")
     public void Calling_getSizeOf_boolean_returns_EMPTY() {
