@@ -10,7 +10,6 @@ import static com.snowmantheater.warden.predicate.GreaterThanOrEqualToPredicate.
 import static com.snowmantheater.warden.predicate.GreaterThanOrEqualToPredicate.isGreaterThanOrEqualTo;
 import static com.snowmantheater.warden.predicate.PredicateTestHelper.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
