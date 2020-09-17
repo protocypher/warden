@@ -11,17 +11,10 @@ import static com.snowmantheater.warden.predicate.Util.getSizeOf;
  */
 public class NotEmptyPredicate implements Predicate<Object> {
 
-    /* PACKAGE LOCKED */
-    NotEmptyPredicate() { }
-
     /**
      * Creates a new {@link NotEmptyPredicate} matching values that are <b>not empty</b>.
-     *
-     * @return A new NotEmptyPredicate
      */
-    public static NotEmptyPredicate NotEmpty() {
-        return new NotEmptyPredicate();
-    }
+    NotEmptyPredicate() { }
 
     /**
      * {@inheritDoc}

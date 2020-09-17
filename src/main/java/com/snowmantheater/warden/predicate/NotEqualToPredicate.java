@@ -13,27 +13,13 @@ import java.util.function.Predicate;
 public class NotEqualToPredicate implements Predicate<Object> {
     private final Object object;
 
-    /* PACKAGE LOCKED */
+    /**
+     * Creates a new {@link NotEqualToPredicate} matching values <b>not equal to</b> {@code object}.
+     *
+     * @param object The given instance to test against
+     */
     NotEqualToPredicate(Object object) {
         this.object = object;
-    }
-
-    /**
-     * Creates a new {@link NotEqualToPredicate} matching values <b>not equal</b> {@code object}.
-     *
-     * @param object The given instance to test against
-     */
-    public static NotEqualToPredicate NotEqualTo(Object object) {
-        return new NotEqualToPredicate(object);
-    }
-
-    /**
-     * <i>(shorthand)</i> Creates a new {@link NotEqualToPredicate} matching values <b>not equal</b> {@code object}.
-     *
-     * @param object The given instance to test against
-     */
-    public static NotEqualToPredicate ne(Object object) {
-        return NotEqualTo(object);
     }
 
     /**

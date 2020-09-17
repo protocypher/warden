@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import java.util.function.Predicate;
 
-import static com.snowmantheater.warden.predicate.GreaterThanOrEqualToPredicate.AfterOrAt;
-import static com.snowmantheater.warden.predicate.GreaterThanOrEqualToPredicate.GreaterThanOrEqualTo;
 import static com.snowmantheater.warden.predicate.PredicateTestHelper.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -17,43 +15,43 @@ class GreaterThanOrEqualToPredicateTest {
     @Test
     @DisplayName("Calling test(primitive) ...")
     public void calling_test_w_primitive_() {
-        assertTrue(apply(GreaterThanOrEqualTo(true)).to(BOOL_TRUE).allMatch(TRUE));
-        assertTrue(apply(GreaterThanOrEqualTo(true)).to(BOOL_FALSE).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(false)).to(BOOL_FALSE, BOOL_TRUE).allMatch(TRUE));
-        assertTrue(apply(GreaterThanOrEqualTo(0)).to(BOOL_FALSE, BOOL_TRUE).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(1)).to(BOOL_FALSE, BOOL_TRUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(true)).to(BOOL_TRUE).allMatch(TRUE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(true)).to(BOOL_FALSE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(false)).to(BOOL_FALSE, BOOL_TRUE).allMatch(TRUE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(0)).to(BOOL_FALSE, BOOL_TRUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(1)).to(BOOL_FALSE, BOOL_TRUE).allMatch(FALSE));
 
-        assertTrue(apply(GreaterThanOrEqualTo((byte)0)).to(BYTE_ZERO, BYTE_POS3).allMatch(TRUE));
-        assertTrue(apply(GreaterThanOrEqualTo((byte)0)).to(BYTE_NEG3).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo((char)0)).to(BYTE_NEG3, BYTE_ZERO, BYTE_POS3).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate((byte)0)).to(BYTE_ZERO, BYTE_POS3).allMatch(TRUE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate((byte)0)).to(BYTE_NEG3).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate((char)0)).to(BYTE_NEG3, BYTE_ZERO, BYTE_POS3).allMatch(FALSE));
 
-        assertTrue(apply(AfterOrAt('M')).to(CHAR_M, CHAR_Z).allMatch(TRUE));
-        assertTrue(apply(AfterOrAt('M')).to(CHAR_A).allMatch(FALSE));
-        assertTrue(apply(AfterOrAt(false)).to(CHAR_A, CHAR_M, CHAR_Z).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate('M')).to(CHAR_M, CHAR_Z).allMatch(TRUE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate('M')).to(CHAR_A).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(false)).to(CHAR_A, CHAR_M, CHAR_Z).allMatch(FALSE));
 
-        assertTrue(apply(GreaterThanOrEqualTo(0D)).to(DOUBLE_ZERO, DOUBLE_POS3).allMatch(TRUE));
-        assertTrue(apply(GreaterThanOrEqualTo(0D)).to(DOUBLE_NEG3).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(false)).to(DOUBLE_NEG3, DOUBLE_ZERO, DOUBLE_POS3).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(0D)).to(DOUBLE_ZERO, DOUBLE_POS3).allMatch(TRUE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(0D)).to(DOUBLE_NEG3).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(false)).to(DOUBLE_NEG3, DOUBLE_ZERO, DOUBLE_POS3).allMatch(FALSE));
 
-        assertTrue(apply(GreaterThanOrEqualTo(0F)).to(FLOAT_ZERO, FLOAT_POS3).allMatch(TRUE));
-        assertTrue(apply(GreaterThanOrEqualTo(0F)).to(FLOAT_NEG3).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(false)).to(FLOAT_NEG3, FLOAT_ZERO, FLOAT_POS3).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(0F)).to(FLOAT_ZERO, FLOAT_POS3).allMatch(TRUE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(0F)).to(FLOAT_NEG3).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(false)).to(FLOAT_NEG3, FLOAT_ZERO, FLOAT_POS3).allMatch(FALSE));
 
-        assertTrue(apply(GreaterThanOrEqualTo(0)).to(INT_ZERO, INT_POS3).allMatch(TRUE));
-        assertTrue(apply(GreaterThanOrEqualTo(0)).to(INT_NEG3).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo((char)0)).to(INT_NEG3, INT_ZERO, INT_POS3).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(0)).to(INT_ZERO, INT_POS3).allMatch(TRUE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(0)).to(INT_NEG3).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate((char)0)).to(INT_NEG3, INT_ZERO, INT_POS3).allMatch(FALSE));
 
-        assertTrue(apply(GreaterThanOrEqualTo(0L)).to(LONG_ZERO, LONG_POS3).allMatch(TRUE));
-        assertTrue(apply(GreaterThanOrEqualTo(0L)).to(LONG_NEG3).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo((char)0)).to(LONG_NEG3, LONG_ZERO, LONG_POS3).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(0L)).to(LONG_ZERO, LONG_POS3).allMatch(TRUE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(0L)).to(LONG_NEG3).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate((char)0)).to(LONG_NEG3, LONG_ZERO, LONG_POS3).allMatch(FALSE));
 
-        assertTrue(apply(GreaterThanOrEqualTo((short)0)).to(SHORT_ZERO, SHORT_POS3).allMatch(TRUE));
-        assertTrue(apply(GreaterThanOrEqualTo((short)0)).to(SHORT_NEG3).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(false)).to(SHORT_NEG3, SHORT_ZERO, SHORT_POS3).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate((short)0)).to(SHORT_ZERO, SHORT_POS3).allMatch(TRUE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate((short)0)).to(SHORT_NEG3).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(false)).to(SHORT_NEG3, SHORT_ZERO, SHORT_POS3).allMatch(FALSE));
     }
 
     @Test
-    @DisplayName("Calling isGreaterThanOrEqualTo(null) throws NPE")
+    @DisplayName("Calling isnew GreaterThanOrEqualToPredicate(null) throws NPE")
     public void calling_isGreaterThanOrEqualTo_w_null_throws_NPE() {
         assertThrows(
             NullPointerException.class,
@@ -64,45 +62,45 @@ class GreaterThanOrEqualToPredicateTest {
     @Test
     @DisplayName("Calling test(instance) ...")
     public void calling_test_w_instance_() {
-        assertTrue(apply(GreaterThanOrEqualTo(0)).to(NUMBER_ZERO, NUMBER_POS3).allMatch(TRUE));
-        assertTrue(apply(GreaterThanOrEqualTo(0)).to(NUMBER_NULL, NUMBER_NEG3).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(0)).to(NUMBER_ZERO, NUMBER_POS3).allMatch(TRUE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(0)).to(NUMBER_NULL, NUMBER_NEG3).allMatch(FALSE));
 
-        assertTrue(apply(GreaterThanOrEqualTo(OBJECT_VALUE)).to(OBJECT_NULL, OBJECT_VALUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(OBJECT_VALUE)).to(OBJECT_NULL, OBJECT_VALUE).allMatch(FALSE));
     }
 
     @Test
     @DisplayName("Calling test(String) ...")
     public void calling_test_w_String_() {
-        assertTrue(apply(AfterOrAt("ABC")).to(STRING_ABC, STRING_XYZ).allMatch(TRUE));
-        assertTrue(apply(AfterOrAt("ABC")).to(STRING_NULL, STRING_EMPTY).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate("ABC")).to(STRING_ABC, STRING_XYZ).allMatch(TRUE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate("ABC")).to(STRING_NULL, STRING_EMPTY).allMatch(FALSE));
     }
 
     @Test
     @DisplayName("Calling test(Collection) ...")
     public void calling_test_w_Collection_() {
-        assertTrue(apply(GreaterThanOrEqualTo(Collections.emptyList())).to(LIST_NULL, LIST_EMPTY, LIST_VALUE).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(Collections.emptyMap())).to(MAP_NULL, MAP_EMPTY, MAP_VALUE).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(Collections.emptySet())).to(SET_NULL, SET_EMPTY, SET_VALUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(Collections.emptyList())).to(LIST_NULL, LIST_EMPTY, LIST_VALUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(Collections.emptyMap())).to(MAP_NULL, MAP_EMPTY, MAP_VALUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(Collections.emptySet())).to(SET_NULL, SET_EMPTY, SET_VALUE).allMatch(FALSE));
     }
 
     @Test
     @DisplayName("Calling test(array) ...")
     public void calling_test_w_array_() {
-        assertTrue(apply(GreaterThanOrEqualTo(new Object[] { })).to(ARRAY_OBJECT_NULL, ARRAY_OBJECT_EMPTY, ARRAY_OBJECT_VALUE).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(new boolean[] { })).to(ARRAY_BOOL_NULL, ARRAY_BOOL_EMPTY, ARRAY_BOOL_VALUE).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(new byte[] { })).to(ARRAY_BYTE_NULL, ARRAY_BYTE_EMPTY, ARRAY_BYTE_VALUE).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(new char[] { })).to(ARRAY_CHAR_NULL, ARRAY_CHAR_EMPTY, ARRAY_CHAR_VALUE).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(new double[] { })).to(ARRAY_DOUBLE_NULL, ARRAY_DOUBLE_EMPTY, ARRAY_DOUBLE_VALUE).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(new float[] { })).to(ARRAY_FLOAT_NULL, ARRAY_FLOAT_EMPTY, ARRAY_FLOAT_VALUE).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(new int[] { })).to(ARRAY_INT_NULL, ARRAY_INT_EMPTY, ARRAY_INT_VALUE).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(new long[] { })).to(ARRAY_LONG_NULL, ARRAY_LONG_EMPTY, ARRAY_LONG_VALUE).allMatch(FALSE));
-        assertTrue(apply(GreaterThanOrEqualTo(new short[] { })).to(ARRAY_SHORT_NULL, ARRAY_SHORT_EMPTY, ARRAY_SHORT_VALUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(new Object[] { })).to(ARRAY_OBJECT_NULL, ARRAY_OBJECT_EMPTY, ARRAY_OBJECT_VALUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(new boolean[] { })).to(ARRAY_BOOL_NULL, ARRAY_BOOL_EMPTY, ARRAY_BOOL_VALUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(new byte[] { })).to(ARRAY_BYTE_NULL, ARRAY_BYTE_EMPTY, ARRAY_BYTE_VALUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(new char[] { })).to(ARRAY_CHAR_NULL, ARRAY_CHAR_EMPTY, ARRAY_CHAR_VALUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(new double[] { })).to(ARRAY_DOUBLE_NULL, ARRAY_DOUBLE_EMPTY, ARRAY_DOUBLE_VALUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(new float[] { })).to(ARRAY_FLOAT_NULL, ARRAY_FLOAT_EMPTY, ARRAY_FLOAT_VALUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(new int[] { })).to(ARRAY_INT_NULL, ARRAY_INT_EMPTY, ARRAY_INT_VALUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(new long[] { })).to(ARRAY_LONG_NULL, ARRAY_LONG_EMPTY, ARRAY_LONG_VALUE).allMatch(FALSE));
+        assertTrue(apply(new GreaterThanOrEqualToPredicate(new short[] { })).to(ARRAY_SHORT_NULL, ARRAY_SHORT_EMPTY, ARRAY_SHORT_VALUE).allMatch(FALSE));
     }
 
     @Test
     @DisplayName("Calling negate() returns LessThanPredicate")
     public void calling_negate_returns_LessThanPredicate() {
-        Predicate<Object> predicate = GreaterThanOrEqualTo(0);
+        Predicate<Object> predicate = new GreaterThanOrEqualToPredicate(0);
         Predicate<Object> negated = predicate.negate();
         assertEquals(LessThanPredicate.class, negated.getClass());
     }

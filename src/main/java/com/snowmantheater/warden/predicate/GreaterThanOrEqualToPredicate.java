@@ -15,39 +15,14 @@ import static java.util.Objects.requireNonNull;
 public class GreaterThanOrEqualToPredicate implements Predicate<Object> {
     private final Object object;
 
-    /* PACKAGE LOCKED */
+    /**
+     * Creates a new {@link GreaterThanOrEqualToPredicate} matching values <b>greater than or equal to</b>
+     * {@code object}.
+     *
+     * @param object The given instance to test against
+     */
     GreaterThanOrEqualToPredicate(Object object) {
         this.object = requireNonNull(object, "object is null");
-    }
-
-    /**
-     * Creates a new {@link GreaterThanOrEqualToPredicate} matching values <b>greater than or equals to</b>
-     * {@code object}.
-     *
-     * @param object The given instance to test against
-     */
-    public static GreaterThanOrEqualToPredicate GreaterThanOrEqualTo(Object object) {
-        return new GreaterThanOrEqualToPredicate(object);
-    }
-
-    /**
-     * <i>(shorthand)</i> Creates a new {@link GreaterThanOrEqualToPredicate} matching values <b>greater than or equals
-     * to</b> {@code object}.
-     *
-     * @param object The given instance to test against
-     */
-    public static GreaterThanOrEqualToPredicate ge(Object object) {
-        return GreaterThanOrEqualTo(object);
-    }
-
-    /**
-     * <i>(alternate)</i> Creates a new {@link GreaterThanOrEqualToPredicate} matching values <b>after or at</b>
-     * {@code object}.
-     *
-     * @param object The given instance to test against
-     */
-    public static GreaterThanOrEqualToPredicate AfterOrAt(Object object) {
-        return GreaterThanOrEqualTo(object);
     }
 
     /**

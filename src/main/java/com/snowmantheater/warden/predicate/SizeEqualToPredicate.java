@@ -14,28 +14,13 @@ import static com.snowmantheater.warden.predicate.Util.getSizeOf;
 public class SizeEqualToPredicate implements Predicate<Object> {
     private final int size;
 
-    /* PACKAGE LOCKED */
+    /**
+     * Creates a new {@link SizeEqualToPredicate} matching values with size <b>equal to</b> {@code size}.
+     *
+     * @param size The size to test against
+     */
     SizeEqualToPredicate(int size) {
         this.size = size;
-    }
-
-    /**
-     * Creates a new {@link SizeEqualToPredicate} matching values with size <b>equal</b> {@code size}.
-     *
-     * @param size The size to test against
-     */
-    public static SizeEqualToPredicate SzEqualTo(int size) {
-        return new SizeEqualToPredicate(size);
-    }
-
-    /**
-     * <i>(shorthand)</i> Creates a new {@link SizeEqualToPredicate} matching values with size <b>equal</b>
-     * {@code size}.
-     *
-     * @param size The size to test against
-     */
-    public static SizeEqualToPredicate zeq(int size) {
-        return SzEqualTo(size);
     }
 
     /**

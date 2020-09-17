@@ -9,17 +9,10 @@ import java.util.function.Predicate;
  */
 public class EmptyPredicate implements Predicate<Object> {
 
-    /* PACKAGE LOCKED */
-    EmptyPredicate() { }
-
     /**
      * Creates a new {@link EmptyPredicate} matching values that are <b>empty</b>.
-     *
-     * @return A new EmptyPredicate
      */
-    public static EmptyPredicate Empty() {
-        return new EmptyPredicate();
-    }
+    EmptyPredicate() { }
 
     /**
      * {@inheritDoc}

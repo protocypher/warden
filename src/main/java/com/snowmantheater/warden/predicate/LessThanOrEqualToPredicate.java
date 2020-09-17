@@ -15,38 +15,13 @@ import static java.util.Objects.requireNonNull;
 public class LessThanOrEqualToPredicate implements Predicate<Object> {
     private final Object object;
 
-    /* PACKAGE LOCKED */
-    LessThanOrEqualToPredicate(Object object) {
-        this.object = requireNonNull(object, "object is null");
-    }
-
     /**
      * Creates a new {@link LessThanOrEqualToPredicate} matching values <b>less than or equal to</b> {@code object}.
      *
      * @param object The given instance to test against
      */
-    public static LessThanOrEqualToPredicate LessThanOrEqualTo(Object object) {
-        return new LessThanOrEqualToPredicate(object);
-    }
-
-    /**
-     * <i>(shorthand)</i> Creates a new {@link LessThanOrEqualToPredicate} matching values <b>less than or equal to</b>
-     * {@code object}.
-     *
-     * @param object The given instance to test against
-     */
-    public static LessThanOrEqualToPredicate le(Object object) {
-        return LessThanOrEqualTo(object);
-    }
-
-    /**
-     * <i>(alternate)</i> Creates a new {@link LessThanOrEqualToPredicate} matching values <b>before or at</b>
-     * {@code object}.
-     *
-     * @param object The given instance to test against
-     */
-    public static LessThanOrEqualToPredicate BeforeOrAt(Object object) {
-        return LessThanOrEqualTo(object);
+    LessThanOrEqualToPredicate(Object object) {
+        this.object = requireNonNull(object, "object is null");
     }
 
     /**

@@ -14,29 +14,14 @@ import static com.snowmantheater.warden.predicate.Util.getSizeOf;
 public class SizeLessThanOrEqualToPredicate implements Predicate<Object> {
     private final int size;
 
-    /* PACKAGE LOCKED */
-    SizeLessThanOrEqualToPredicate(int size) {
-        this.size = size;
-    }
-
     /**
      * Creates a new {@link SizeLessThanOrEqualToPredicate} matching values with size <b>less than or equal to</b>
      * {@code size}.
      *
      * @param size The size to test against
      */
-    public static SizeLessThanOrEqualToPredicate SzLessThanOrEqualTo(int size) {
-        return new SizeLessThanOrEqualToPredicate(size);
-    }
-
-    /**
-     * <i>(shorthand)</i> Creates a new {@link SizeLessThanOrEqualToPredicate} matching values with size <b>less than or
-     * equal to</b> {@code size}.
-     *
-     * @param size The size to test against
-     */
-    public static SizeLessThanOrEqualToPredicate zle(int size) {
-        return SzLessThanOrEqualTo(size);
+    SizeLessThanOrEqualToPredicate(int size) {
+        this.size = size;
     }
 
     /**
