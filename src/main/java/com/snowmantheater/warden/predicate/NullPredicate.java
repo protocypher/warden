@@ -17,7 +17,7 @@ public class NullPredicate implements Predicate<Object> {
      *
      * @return A new NullPredicate
      */
-    public static NullPredicate isNull() {
+    public static NullPredicate Null() {
         return new NullPredicate();
     }
 

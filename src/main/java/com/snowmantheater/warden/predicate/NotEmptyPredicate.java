@@ -19,7 +19,7 @@ public class NotEmptyPredicate implements Predicate<Object> {
      *
      * @return A new NotEmptyPredicate
      */
-    public static NotEmptyPredicate isNotEmpty() {
+    public static NotEmptyPredicate NotEmpty() {
         return new NotEmptyPredicate();
     }
 

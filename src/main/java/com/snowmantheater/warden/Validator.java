@@ -14,5 +14,5 @@ public interface Validator {
         return new FieldValidator(requireNonNull(name), value);
     }
 
-    PredicateActions matches(Predicate<Object> predicate);
+    PredicateActions is(Predicate<Object> predicate);
 }

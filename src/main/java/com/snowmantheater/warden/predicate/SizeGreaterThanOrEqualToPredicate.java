@@ -25,7 +25,7 @@ public class SizeGreaterThanOrEqualToPredicate implements Predicate<Object> {
      *
      * @param size The size to test against
      */
-    public static SizeGreaterThanOrEqualToPredicate isSizeGreaterThanOrEqualTo(int size) {
+    public static SizeGreaterThanOrEqualToPredicate SzGreaterThanOrEqualTo(int size) {
         return new SizeGreaterThanOrEqualToPredicate(size);
     }
 
@@ -36,7 +36,7 @@ public class SizeGreaterThanOrEqualToPredicate implements Predicate<Object> {
      * @param size The size to test against
      */
     public static SizeGreaterThanOrEqualToPredicate zge(int size) {
-        return isSizeGreaterThanOrEqualTo(size);
+        return SzGreaterThanOrEqualTo(size);
     }
 
     /**

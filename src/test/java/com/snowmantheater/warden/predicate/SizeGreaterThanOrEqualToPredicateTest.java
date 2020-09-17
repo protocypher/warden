@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.function.Predicate;
 
 import static com.snowmantheater.warden.predicate.PredicateTestHelper.*;
-import static com.snowmantheater.warden.predicate.SizeGreaterThanOrEqualToPredicate.isSizeGreaterThanOrEqualTo;
+import static com.snowmantheater.warden.predicate.SizeGreaterThanOrEqualToPredicate.SzGreaterThanOrEqualTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -14,122 +14,122 @@ class SizeGreaterThanOrEqualToPredicateTest {
     @Test
     @DisplayName("Calling test(primitive) ...")
     public void calling_test_w_primitive_() {
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(BOOL_TRUE, BOOL_FALSE).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(1)).to(BOOL_TRUE, BOOL_FALSE).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(BOOL_TRUE, BOOL_FALSE).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(1)).to(BOOL_TRUE, BOOL_FALSE).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(BYTE_NEG3, BYTE_ZERO, BYTE_POS3).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(1)).to(BYTE_NEG3, BYTE_ZERO, BYTE_POS3).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(BYTE_NEG3, BYTE_ZERO, BYTE_POS3).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(1)).to(BYTE_NEG3, BYTE_ZERO, BYTE_POS3).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(CHAR_0, CHAR_A, CHAR_M, CHAR_Z).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(1)).to(CHAR_0, CHAR_A, CHAR_M, CHAR_Z).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(CHAR_0, CHAR_A, CHAR_M, CHAR_Z).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(1)).to(CHAR_0, CHAR_A, CHAR_M, CHAR_Z).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(DOUBLE_NEG3, DOUBLE_ZERO, DOUBLE_POS3).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(1)).to(DOUBLE_NEG3, DOUBLE_ZERO, DOUBLE_POS3).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(DOUBLE_NEG3, DOUBLE_ZERO, DOUBLE_POS3).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(1)).to(DOUBLE_NEG3, DOUBLE_ZERO, DOUBLE_POS3).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(FLOAT_NEG3, FLOAT_ZERO, FLOAT_POS3).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(1)).to(FLOAT_NEG3, FLOAT_ZERO, FLOAT_POS3).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(FLOAT_NEG3, FLOAT_ZERO, FLOAT_POS3).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(1)).to(FLOAT_NEG3, FLOAT_ZERO, FLOAT_POS3).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(INT_NEG3, INT_ZERO, INT_POS3).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(1)).to(INT_NEG3, INT_ZERO, INT_POS3).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(INT_NEG3, INT_ZERO, INT_POS3).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(1)).to(INT_NEG3, INT_ZERO, INT_POS3).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(LONG_NEG3, LONG_ZERO, LONG_POS3).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(1)).to(LONG_NEG3, LONG_ZERO, LONG_POS3).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(LONG_NEG3, LONG_ZERO, LONG_POS3).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(1)).to(LONG_NEG3, LONG_ZERO, LONG_POS3).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(SHORT_NEG3, SHORT_ZERO, SHORT_POS3).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(1)).to(SHORT_NEG3, SHORT_ZERO, SHORT_POS3).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(SHORT_NEG3, SHORT_ZERO, SHORT_POS3).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(1)).to(SHORT_NEG3, SHORT_ZERO, SHORT_POS3).allMatch(FALSE));
     }
 
     @Test
     @DisplayName("Calling test(instance) ...")
     public void calling_test_w_instance_() {
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(NUMBER_NULL, NUMBER_NEG3, NUMBER_ZERO, NUMBER_POS3).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(1)).to(NUMBER_NULL, NUMBER_NEG3, NUMBER_ZERO, NUMBER_POS3).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(NUMBER_NULL, NUMBER_NEG3, NUMBER_ZERO, NUMBER_POS3).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(1)).to(NUMBER_NULL, NUMBER_NEG3, NUMBER_ZERO, NUMBER_POS3).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(OBJECT_NULL, OBJECT_VALUE).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(1)).to(OBJECT_NULL, OBJECT_VALUE).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(OBJECT_NULL, OBJECT_VALUE).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(1)).to(OBJECT_NULL, OBJECT_VALUE).allMatch(FALSE));
     }
 
     @Test
     @DisplayName("Calling test(String) ...")
     public void calling_test_w_String_() {
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(STRING_EMPTY, STRING_ABC, STRING_XYZ).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(STRING_NULL).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(STRING_ABC, STRING_XYZ).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(STRING_NULL, STRING_EMPTY).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(STRING_EMPTY, STRING_ABC, STRING_XYZ).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(STRING_NULL).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(STRING_ABC, STRING_XYZ).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(STRING_NULL, STRING_EMPTY).allMatch(FALSE));
     }
 
     @Test
     @DisplayName("Calling test(Collection) ...")
     public void calling_test_w_Collection_() {
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(LIST_EMPTY, LIST_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(LIST_NULL).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(LIST_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(LIST_NULL, LIST_EMPTY).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(LIST_EMPTY, LIST_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(LIST_NULL).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(LIST_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(LIST_NULL, LIST_EMPTY).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(MAP_EMPTY, MAP_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(MAP_NULL).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(MAP_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(MAP_NULL, MAP_EMPTY).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(MAP_EMPTY, MAP_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(MAP_NULL).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(MAP_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(MAP_NULL, MAP_EMPTY).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(SET_EMPTY, SET_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(SET_NULL).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(SET_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(SET_NULL, SET_EMPTY).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(SET_EMPTY, SET_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(SET_NULL).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(SET_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(SET_NULL, SET_EMPTY).allMatch(FALSE));
     }
 
     @Test
     @DisplayName("Calling test(array) ...")
     public void calling_test_w_array_() {
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(ARRAY_OBJECT_EMPTY, ARRAY_OBJECT_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).toOne(ARRAY_OBJECT_NULL).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).toOne(ARRAY_OBJECT_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(ARRAY_OBJECT_NULL, ARRAY_OBJECT_EMPTY).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(ARRAY_OBJECT_EMPTY, ARRAY_OBJECT_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).toOne(ARRAY_OBJECT_NULL).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).toOne(ARRAY_OBJECT_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(ARRAY_OBJECT_NULL, ARRAY_OBJECT_EMPTY).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(ARRAY_BOOL_EMPTY, ARRAY_BOOL_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).toOne(ARRAY_BOOL_NULL).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).toOne(ARRAY_BOOL_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(ARRAY_BOOL_NULL, ARRAY_BOOL_EMPTY).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(ARRAY_BOOL_EMPTY, ARRAY_BOOL_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).toOne(ARRAY_BOOL_NULL).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).toOne(ARRAY_BOOL_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(ARRAY_BOOL_NULL, ARRAY_BOOL_EMPTY).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(ARRAY_BYTE_EMPTY, ARRAY_BYTE_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).toOne(ARRAY_BYTE_NULL).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).toOne(ARRAY_BYTE_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(ARRAY_BYTE_NULL, ARRAY_BYTE_EMPTY).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(ARRAY_BYTE_EMPTY, ARRAY_BYTE_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).toOne(ARRAY_BYTE_NULL).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).toOne(ARRAY_BYTE_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(ARRAY_BYTE_NULL, ARRAY_BYTE_EMPTY).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(ARRAY_CHAR_EMPTY, ARRAY_CHAR_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).toOne(ARRAY_CHAR_NULL).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).toOne(ARRAY_CHAR_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(ARRAY_CHAR_NULL, ARRAY_CHAR_EMPTY).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(ARRAY_CHAR_EMPTY, ARRAY_CHAR_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).toOne(ARRAY_CHAR_NULL).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).toOne(ARRAY_CHAR_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(ARRAY_CHAR_NULL, ARRAY_CHAR_EMPTY).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(ARRAY_DOUBLE_EMPTY, ARRAY_DOUBLE_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).toOne(ARRAY_DOUBLE_NULL).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).toOne(ARRAY_DOUBLE_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(ARRAY_DOUBLE_NULL, ARRAY_DOUBLE_EMPTY).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(ARRAY_DOUBLE_EMPTY, ARRAY_DOUBLE_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).toOne(ARRAY_DOUBLE_NULL).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).toOne(ARRAY_DOUBLE_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(ARRAY_DOUBLE_NULL, ARRAY_DOUBLE_EMPTY).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(ARRAY_FLOAT_EMPTY, ARRAY_FLOAT_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).toOne(ARRAY_FLOAT_NULL).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).toOne(ARRAY_FLOAT_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(ARRAY_FLOAT_NULL, ARRAY_FLOAT_EMPTY).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(ARRAY_FLOAT_EMPTY, ARRAY_FLOAT_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).toOne(ARRAY_FLOAT_NULL).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).toOne(ARRAY_FLOAT_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(ARRAY_FLOAT_NULL, ARRAY_FLOAT_EMPTY).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(ARRAY_INT_EMPTY, ARRAY_INT_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).toOne(ARRAY_INT_NULL).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).toOne(ARRAY_INT_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(ARRAY_INT_NULL, ARRAY_INT_EMPTY).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(ARRAY_INT_EMPTY, ARRAY_INT_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).toOne(ARRAY_INT_NULL).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).toOne(ARRAY_INT_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(ARRAY_INT_NULL, ARRAY_INT_EMPTY).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(ARRAY_LONG_EMPTY, ARRAY_LONG_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).toOne(ARRAY_LONG_NULL).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).toOne(ARRAY_LONG_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(ARRAY_LONG_NULL, ARRAY_LONG_EMPTY).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(ARRAY_LONG_EMPTY, ARRAY_LONG_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).toOne(ARRAY_LONG_NULL).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).toOne(ARRAY_LONG_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(ARRAY_LONG_NULL, ARRAY_LONG_EMPTY).allMatch(FALSE));
 
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).to(ARRAY_SHORT_EMPTY, ARRAY_SHORT_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(0)).toOne(ARRAY_SHORT_NULL).allMatch(FALSE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).toOne(ARRAY_SHORT_VALUE).allMatch(TRUE));
-        assertTrue(apply(isSizeGreaterThanOrEqualTo(3)).to(ARRAY_SHORT_NULL, ARRAY_SHORT_EMPTY).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).to(ARRAY_SHORT_EMPTY, ARRAY_SHORT_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(0)).toOne(ARRAY_SHORT_NULL).allMatch(FALSE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).toOne(ARRAY_SHORT_VALUE).allMatch(TRUE));
+        assertTrue(apply(SzGreaterThanOrEqualTo(3)).to(ARRAY_SHORT_NULL, ARRAY_SHORT_EMPTY).allMatch(FALSE));
     }
 
     @Test
     @DisplayName("Calling negate() returns SizeLessThanPredicate")
     public void calling_negate_returns_SizeLessThanPredicate() {
-        Predicate<Object> predicate = isSizeGreaterThanOrEqualTo(0);
+        Predicate<Object> predicate = SzGreaterThanOrEqualTo(0);
         Predicate<Object> negated = predicate.negate();
         assertEquals(SizeLessThanPredicate.class, negated.getClass());
     }

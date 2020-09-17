@@ -17,7 +17,7 @@ public class NotNullPredicate implements Predicate<Object> {
      *
      * @return A new NotNullPredicate
      */
-    public static NotNullPredicate isNotNull() {
+    public static NotNullPredicate NotNull() {
         return new NotNullPredicate();
     }
 

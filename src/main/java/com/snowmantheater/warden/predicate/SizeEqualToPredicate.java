@@ -24,7 +24,7 @@ public class SizeEqualToPredicate implements Predicate<Object> {
      *
      * @param size The size to test against
      */
-    public static SizeEqualToPredicate isSizeEqualTo(int size) {
+    public static SizeEqualToPredicate SzEqualTo(int size) {
         return new SizeEqualToPredicate(size);
     }
 
@@ -35,7 +35,7 @@ public class SizeEqualToPredicate implements Predicate<Object> {
      * @param size The size to test against
      */
     public static SizeEqualToPredicate zeq(int size) {
-        return isSizeEqualTo(size);
+        return SzEqualTo(size);
     }
 
     /**

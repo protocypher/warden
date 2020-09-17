@@ -23,7 +23,7 @@ public class NotEqualToPredicate implements Predicate<Object> {
      *
      * @param object The given instance to test against
      */
-    public static NotEqualToPredicate isNotEqualTo(Object object) {
+    public static NotEqualToPredicate NotEqualTo(Object object) {
         return new NotEqualToPredicate(object);
     }
 
@@ -33,7 +33,7 @@ public class NotEqualToPredicate implements Predicate<Object> {
      * @param object The given instance to test against
      */
     public static NotEqualToPredicate ne(Object object) {
-        return isNotEqualTo(object);
+        return NotEqualTo(object);
     }
 
     /**

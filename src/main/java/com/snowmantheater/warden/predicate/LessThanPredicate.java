@@ -24,7 +24,7 @@ public class LessThanPredicate implements Predicate<Object> {
      *
      * @param object The given instance to test against
      */
-    public static LessThanPredicate isLessThan(Object object) {
+    public static LessThanPredicate LessThan(Object object) {
         return new LessThanPredicate(object);
     }
 
@@ -34,7 +34,7 @@ public class LessThanPredicate implements Predicate<Object> {
      * @param object The given instance to test against
      */
     public static LessThanPredicate lt(Object object) {
-        return isLessThan(object);
+        return LessThan(object);
     }
 
     /**
@@ -42,8 +42,8 @@ public class LessThanPredicate implements Predicate<Object> {
      *
      * @param object The given instance to test against
      */
-    public static LessThanPredicate isBefore(Object object) {
-        return isLessThan(object);
+    public static LessThanPredicate Before(Object object) {
+        return LessThan(object);
     }
 
     /**

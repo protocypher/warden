@@ -25,7 +25,7 @@ public class GreaterThanPredicate implements Predicate<Object> {
      *
      * @param object The given instance to test against
      */
-    public static GreaterThanPredicate isGreaterThan(Object object) {
+    public static GreaterThanPredicate GreaterThan(Object object) {
         return new GreaterThanPredicate(object);
     }
 
@@ -35,7 +35,7 @@ public class GreaterThanPredicate implements Predicate<Object> {
      * @param object The given instance to test against
      */
     public static GreaterThanPredicate gt(Object object) {
-        return isGreaterThan(object);
+        return GreaterThan(object);
     }
 
     /**
@@ -43,8 +43,8 @@ public class GreaterThanPredicate implements Predicate<Object> {
      *
      * @param object The given instance to test against
      */
-    public static GreaterThanPredicate isAfter(Object object) {
-        return isGreaterThan(object);
+    public static GreaterThanPredicate After(Object object) {
+        return GreaterThan(object);
     }
 
     /**

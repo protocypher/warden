@@ -23,7 +23,7 @@ public class EqualToPredicate implements Predicate<Object> {
      *
      * @param object The given instance to test against
      */
-    public static EqualToPredicate isEqualTo(Object object) {
+    public static EqualToPredicate EqualTo(Object object) {
         return new EqualToPredicate(object);
     }
 
@@ -33,7 +33,7 @@ public class EqualToPredicate implements Predicate<Object> {
      * @param object The given instance to test against
      */
     public static EqualToPredicate eq(Object object) {
-        return isEqualTo(object);
+        return EqualTo(object);
     }
 
     /**

@@ -17,7 +17,7 @@ public class EmptyPredicate implements Predicate<Object> {
      *
      * @return A new EmptyPredicate
      */
-    public static EmptyPredicate isEmpty() {
+    public static EmptyPredicate Empty() {
         return new EmptyPredicate();
     }
 

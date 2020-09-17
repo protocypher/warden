@@ -13,7 +13,7 @@ class ValueValidator implements Validator {
      * {@inheritDoc}
      */
     @Override
-    public PredicateActions matches(Predicate<Object> predicate) {
+    public PredicateActions is(Predicate<Object> predicate) {
         if(predicate.test(value)) {
             return new MatchingPredicateActions(value);
         } else {
