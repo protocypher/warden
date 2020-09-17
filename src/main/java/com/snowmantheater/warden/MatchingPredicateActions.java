@@ -3,12 +3,27 @@ package com.snowmantheater.warden;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+/**
+ * {@link MatchingPredicateActions} implements the methods of {@code PredicateActions} as if the value matches the
+ * {@code Predicate}.
+ */
 class MatchingPredicateActions extends AbstractPredicateActions {
 
+    /**
+     * Creates a new {@link MatchingPredicateActions} for {@code value}.
+     *
+     * @param value The given value
+     */
     MatchingPredicateActions(Object value) {
         super(value, MessageProvider.of(value));
     }
 
+    /**
+     * Creates a new {@link MatchingPredicateActions} for {@code value} named {@code name}.
+     *
+     * @param name The name of the value
+     * @param value The given value
+     */
     MatchingPredicateActions(String name, Object value) {
         super(value, MessageProvider.of(name, value));
     }
