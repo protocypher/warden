@@ -346,4 +346,120 @@ public class Predicates {
     public static Predicate<Object> zlt(int size) {
         return SzLessThan(size);
     }
+
+    // *****************************************************************************************************************
+    // *                                                                                        COMBINATION PREDICATES *
+    // *****************************************************************************************************************
+
+    /**
+     * Returns a {@link Predicate} matching values <b>greater than</b> {@code min} and <b>less than</b> {@code max}.
+     *
+     * @param min The minimum exclusive bounding value
+     * @param max The maximum exclusive bounding value
+     *
+     * @return A Predicate matching values greater than min and less than max
+     */
+    public static Predicate<Object> Between(Object min, Object max) {
+        return GreaterThan(min).and(LessThan(max));
+    }
+
+    /**
+     * Returns a {@link Predicate} matching values <b>greater than</b> {@code min} and <b>less than</b> {@code max}.
+     *
+     * @param min The minimum exclusive bounding value
+     * @param max The maximum exclusive bounding value
+     *
+     * @return A Predicate matching values greater than min and less than max
+     */
+    public static Predicate<Object> btw(Object min, Object max) {
+        return Between(min, max);
+    }
+
+    /**
+     * Returns a {@link Predicate} matching values <b>greater than or equal to</b> {@code min} and <b>less than or equal
+     * to</b> {@code max}.
+     *
+     * @param min The minimum inclusive bounding value
+     * @param max The maximum inclusive bounding value
+     *
+     * @return A Predicate matching values greater than or equal to min and less than or equal to max
+     */
+    public static Predicate<Object> Within(Object min, Object max) {
+        return GreaterThanOrEqualTo(min).and(LessThanOrEqualTo(max));
+    }
+
+    /**
+     * Returns a {@link Predicate} matching values <b>greater than or equal to</b> {@code min} and <b>less than or equal
+     * to</b> {@code max}.
+     *
+     * @param min The minimum inclusive bounding value
+     * @param max The maximum inclusive bounding value
+     *
+     * @return A Predicate matching values greater than or equal to min and less than or equal to max
+     */
+    public static Predicate<Object> wtn(Object min, Object max) {
+        return Within(min, max);
+    }
+
+    /**
+     * Returns a {@link Predicate} matching values with size <b>greater than</b> {@code min} and <b>less than</b>
+     * {@code max}.
+     *
+     * @param min The minimum exclusive bounding size
+     * @param max The maximum exclusive bounding size
+     *
+     * @return A Predicate matching values with size greater than min and less than max
+     */
+    public static Predicate<Object> SzBetween(int min, int max) {
+        return SzGreaterThan(min).and(SzLessThan(max));
+    }
+
+    /**
+     * Returns a {@link Predicate} matching values with size <b>greater than</b> {@code min} and <b>less than</b>
+     * {@code max}.
+     *
+     * @param min The minimum exclusive bounding size
+     * @param max The maximum exclusive bounding size
+     *
+     * @return A Predicate matching values with size greater than min and less than max
+     */
+    public static Predicate<Object> zbtw(int min, int max) {
+        return SzBetween(min, max);
+    }
+
+    /**
+     * Returns a {@link Predicate} matching values with size <b>greater than or equal to</b> {@code min} and <b>less
+     * than or equal to</b> {@code max}.
+     *
+     * @param min The minimum inclusive bounding size
+     * @param max The maximum inclusive bounding size
+     *
+     * @return A Predicate matching values with size greater than or equal to min and less than or equal to max
+     */
+    public static Predicate<Object> SzWithin(int min, int max) {
+        return SzGreaterThanOrEqualTo(min).and(SzLessThanOrEqualTo(max));
+    }
+
+    /**
+     * Returns a {@link Predicate} matching values with size <b>greater than or equal to</b> {@code min} and <b>less
+     * than or equal to</b> {@code max}.
+     *
+     * @param min The minimum inclusive bounding size
+     * @param max The maximum inclusive bounding size
+     *
+     * @return A Predicate matching values with size greater than or equal to min and less than or equal to max
+     */
+    public static Predicate<Object> zwtn(int min, int max) {
+        return SzWithin(min, max);
+    }
+
+    /**
+     * Returns a {@link Predicate} matching values which are <b>null or empty</b>. This is a common combination of
+     * checks.
+     *
+     * @return A Predicate matching values which are null or empty
+     */
+    public static Predicate<Object> NullOrEmpty() {
+        return Null().or(Empty());
+    }
 }
