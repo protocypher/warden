@@ -10,6 +10,7 @@ import static java.util.Objects.requireNonNull;
  * {@link GreaterThanOrEqualToPredicate} matches values that are {@link Comparable} with and <b>greater than or equal
  * to</b> a given instance.
  *
+ * @version 1.0.0
  * @author benjamin@snowmantheater.com
  */
 public class GreaterThanOrEqualToPredicate implements Predicate<Object> {

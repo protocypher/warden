@@ -8,6 +8,7 @@ import java.util.function.Predicate;
  * {@link NotEqualToPredicate} matches values that do <b>not equal</b> a given instance. If both the value and instance
  * are arrays then {@link Arrays#equals} is used otherwise {@link Objects#equals}.
  *
+ * @version 1.0.0
  * @author benjamin@snowmantheater.com
  */
 public class NotEqualToPredicate implements Predicate<Object> {

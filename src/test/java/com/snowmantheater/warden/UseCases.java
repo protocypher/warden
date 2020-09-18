@@ -4,8 +4,22 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.snowmantheater.warden.Validator.when;
-import static com.snowmantheater.warden.predicate.Predicates.*;
+import static com.snowmantheater.warden.predicate.Predicates.Before;
+import static com.snowmantheater.warden.predicate.Predicates.EqualTo;
+import static com.snowmantheater.warden.predicate.Predicates.LessThan;
+import static com.snowmantheater.warden.predicate.Predicates.NotEqualTo;
+import static com.snowmantheater.warden.predicate.Predicates.NotNull;
+import static com.snowmantheater.warden.predicate.Predicates.Null;
+import static com.snowmantheater.warden.predicate.Predicates.eq;
+import static com.snowmantheater.warden.predicate.Predicates.lt;
+import static com.snowmantheater.warden.predicate.Predicates.ne;
 
+/**
+ * {@link UseCases} provides various test methods to demonstrate the use of fluid method calls in Warden.
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
+ */
 public class UseCases {
     @Test
     @DisplayName("Example: Nullability")

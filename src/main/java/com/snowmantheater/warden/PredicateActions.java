@@ -6,22 +6,25 @@ import java.util.function.Supplier;
 /**
  * {@link PredicateActions} are methods which have polar functionality that is selected based on whether a value matches
  * a {@code Predicate} or not.
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
  */
 public interface PredicateActions {
     /**
-     * If the value matches the {@code Predicate}, then throw a {@link RejectionException} with a message noting the
+     * If the value matches the {@code Predicate}, then throw a {@link ValidationException} with a message noting the
      * value.
      */
     void reject();
 
     /**
-     * If the value matches the {@code Predicate}, then throw a {@link RejectionException} with a message noting the
+     * If the value matches the {@code Predicate}, then throw a {@link ValidationException} with a message noting the
      * value with {@code reason} embedded.
      */
     void reject(String reason);
 
     /**
-     * If the value matches the {@code Predicate}, then perform no action, otherwise throw a {@link RejectionException}
+     * If the value matches the {@code Predicate}, then perform no action, otherwise throw a {@link ValidationException}
      * with a message noting the value.
      */
     void accept();

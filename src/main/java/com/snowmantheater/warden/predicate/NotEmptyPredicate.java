@@ -7,6 +7,7 @@ import static com.snowmantheater.warden.predicate.Util.getSizeOf;
 /**
  * {@link NotEmptyPredicate} matches values that have <i>magnitude</i> and are neither null or <b>empty</b>.
  *
+ * @version 1.0.0
  * @author benjamin@snowmantheater.com
  */
 public class NotEmptyPredicate implements Predicate<Object> {

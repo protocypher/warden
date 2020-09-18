@@ -9,6 +9,7 @@ import static com.snowmantheater.warden.predicate.Util.getSizeOf;
  * {@link SizeGreaterThanOrEqualToPredicate} matches values that have <i>magnitude</i> and their size is <b>greater than
  * or equal to</b> a given size.
  *
+ * @version 1.0.0
  * @author benjamin@snowmantheater.com
  */
 public class SizeGreaterThanOrEqualToPredicate implements Predicate<Object> {

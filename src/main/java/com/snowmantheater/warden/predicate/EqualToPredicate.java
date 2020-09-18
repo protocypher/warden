@@ -8,6 +8,7 @@ import java.util.function.Predicate;
  * {@link EqualToPredicate} matches values that <b>equal</b> a given instance. If both the value and instance are arrays
  * then {@link Arrays#equals} is used otherwise {@link Objects#equals}.
  *
+ * @version 1.0.0
  * @author benjamin@snowmantheater.com
  */
 public class EqualToPredicate implements Predicate<Object> {

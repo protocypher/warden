@@ -5,14 +5,16 @@ import org.junit.jupiter.api.Test;
 
 import java.util.function.Consumer;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MatchingPredicateActionsTest {
     @Test
-    @DisplayName("Calling reject() throws RejectionException")
-    public void calling_reject_throws_RejectionException() {
+    @DisplayName("Calling reject() throws ValidationException")
+    public void calling_reject_throws_ValidationException() {
         PredicateActions actions = new MatchingPredicateActions(null);
-        assertThrows(RejectionException.class, actions::reject);
+        assertThrows(ValidationException.class, actions::reject);
     }
 
     @Test
@@ -23,10 +25,10 @@ class MatchingPredicateActionsTest {
     }
 
     @Test
-    @DisplayName("Calling reject(\"reason\") throws RejectionException")
-    public void calling_reject_w_reason_throws_RejectionException() {
+    @DisplayName("Calling reject(\"reason\") throws ValidationException")
+    public void calling_reject_w_reason_throws_ValidationException() {
         PredicateActions actions = new MatchingPredicateActions(null);
-        assertThrows(RejectionException.class, () -> actions.reject("reason"));
+        assertThrows(ValidationException.class, () -> actions.reject("reason"));
     }
 
     @Test

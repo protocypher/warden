@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * {@link AbstractMessageProvider} provides the common, basic behavior for all {@link MessageProvider}s.
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
  */
 abstract class AbstractMessageProvider implements MessageProvider {
     private final String base;

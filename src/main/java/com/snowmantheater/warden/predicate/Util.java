@@ -6,6 +6,9 @@ import java.util.Optional;
 
 /**
  * Provides common, utility methods for the {@code warden.predicate} package.
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
  */
 class Util {
 

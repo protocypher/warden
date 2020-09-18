@@ -2,6 +2,9 @@ package com.snowmantheater.warden;
 
 /**
  * A {@link ValueMessageProvider} provides messages for an unnamed value.
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
  */
 class ValueMessageProvider extends AbstractMessageProvider {
     /**

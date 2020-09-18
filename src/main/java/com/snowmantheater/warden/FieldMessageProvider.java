@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * A {@link FieldMessageProvider} provides messages for a named value.
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
  */
 class FieldMessageProvider extends AbstractMessageProvider {
     /**

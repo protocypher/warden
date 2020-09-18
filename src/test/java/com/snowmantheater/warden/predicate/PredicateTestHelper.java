@@ -7,6 +7,12 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+/**
+ * {@link PredicateTestHelper} provides various data points and methods to assist {@code Predicate} tests.
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
+ */
 public class PredicateTestHelper {
 
     // *****************************************************************************************************************

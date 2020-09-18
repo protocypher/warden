@@ -8,6 +8,9 @@ import static java.util.Objects.requireNonNull;
  * A {@link FieldValidator} is a {@link Validator} for a named value.
  *
  * @see Validator
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
  */
 public class FieldValidator implements Validator {
     private final String name;

@@ -2,6 +2,13 @@ package com.snowmantheater.warden.predicate;
 
 import java.util.function.Predicate;
 
+/**
+ * {@link Predicates} provides various, static, constructor methods to create {@link Predicate}s for various matches.
+ * Some of these methods pre-combine predicates, eg. Between = GreaterThan(x) and LessThan(y).
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
+ */
 public class Predicates {
     /**
      * Returns a {@link Predicate} matching values that are <b>null</b>.

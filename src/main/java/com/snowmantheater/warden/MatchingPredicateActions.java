@@ -6,6 +6,9 @@ import java.util.function.Supplier;
 /**
  * {@link MatchingPredicateActions} implements the methods of {@code PredicateActions} as if the value matches the
  * {@code Predicate}.
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
  */
 class MatchingPredicateActions extends AbstractPredicateActions {
 
@@ -33,7 +36,7 @@ class MatchingPredicateActions extends AbstractPredicateActions {
      */
     @Override
     public void reject() {
-        throw new RejectionException(getValue(), getMessageProvider().getRejectingMessage());
+        throw new ValidationException(getValue(), getMessageProvider().getRejectingMessage());
     }
 
     /**
@@ -41,7 +44,7 @@ class MatchingPredicateActions extends AbstractPredicateActions {
      */
     @Override
     public void reject(String reason) {
-        throw new RejectionException(getValue(), getMessageProvider().getRejectingMessage(reason));
+        throw new ValidationException(getValue(), getMessageProvider().getRejectingMessage(reason));
     }
 
     /**

@@ -5,6 +5,9 @@ import java.util.function.Consumer;
 /**
  * {@link MatchingPredicateActions} implements the methods of {@code PredicateActions} as if the value does not match
  * the {@code Predicate}.
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
  */
 class NonMatchingPredicateActions extends AbstractPredicateActions {
 
@@ -32,7 +35,7 @@ class NonMatchingPredicateActions extends AbstractPredicateActions {
      */
     @Override
     public void accept() {
-        throw new RejectionException(getValue(), getMessageProvider().getRejectingMessage());
+        throw new ValidationException(getValue(), getMessageProvider().getRejectingMessage());
     }
 
     /**

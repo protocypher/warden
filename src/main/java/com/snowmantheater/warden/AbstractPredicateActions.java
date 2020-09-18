@@ -6,6 +6,9 @@ import java.util.function.Supplier;
 /**
  * {@link AbstractPredicateActions} provides basic implementations of the {@link PredicateActions} to keep implementors
  * consistent.
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
  */
 abstract class AbstractPredicateActions implements PredicateActions {
     private final Object value;

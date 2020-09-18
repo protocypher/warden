@@ -2,6 +2,9 @@ package com.snowmantheater.warden;
 
 /**
  * {@link MessageProvider} provides messages for a given (named) value.
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
  */
 public interface MessageProvider {
     /**

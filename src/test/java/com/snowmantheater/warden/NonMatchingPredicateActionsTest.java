@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.function.Consumer;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class NonMatchingPredicateActionsTest {
     @Test
@@ -30,10 +32,10 @@ class NonMatchingPredicateActionsTest {
     }
 
     @Test
-    @DisplayName("Calling accept() throws RejectionException")
-    public void calling_accept_throws_RejectionException() {
+    @DisplayName("Calling accept() throws ValidationException")
+    public void calling_accept_throws_ValidationException() {
         PredicateActions actions = new NonMatchingPredicateActions(null);
-        assertThrows(RejectionException.class, actions::accept);
+        assertThrows(ValidationException.class, actions::accept);
     }
 
     @Test

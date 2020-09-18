@@ -10,6 +10,9 @@ import static java.util.Objects.requireNonNull;
  *
  * @see Predicate
  * @see PredicateActions
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
  */
 public interface Validator {
 

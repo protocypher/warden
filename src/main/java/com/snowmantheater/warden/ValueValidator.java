@@ -6,6 +6,9 @@ import java.util.function.Predicate;
  * A {@link ValueValidator} is a {@link Validator} for a nameless value.
  *
  * @see Validator
+ *
+ * @version 1.0.0
+ * @author benjamin@snowmantheater.com
  */
 class ValueValidator implements Validator {
     private final Object value;

@@ -9,6 +9,7 @@ import static java.util.Objects.requireNonNull;
 /**
  * {@link LessThanPredicate} matches values that are {@link Comparable} with and <b>less than</b> a given instance.
  *
+ * @version 1.0.0
  * @author benjamin@snowmantheater.com
  */
 public class LessThanPredicate implements Predicate<Object> {
