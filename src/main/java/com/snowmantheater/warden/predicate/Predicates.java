@@ -1,7 +1,5 @@
 package com.snowmantheater.warden.predicate;
 
-import lombok.NonNull;
-
 import java.util.function.Predicate;
 
 /**
