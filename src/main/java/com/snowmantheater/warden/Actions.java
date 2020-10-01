@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NonNull;
 
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
@@ -22,12 +23,14 @@ public class Actions {
     /**
      * Creates a new {@link Actions} for {@code name}, {@code value} and {@code matching}.
      *
-     * @param value The given value
-     * @param matching Whether actions should reflect a matching Predicate or not
+     * @param value (non-null) The given validation value
+     * @param predicate (non-null) Whether actions should reflect a matching Predicate or not
      */
-    Actions(@NonNull Value value, boolean matching) {
+    Actions(@NonNull Value value, @NonNull Predicate<Object> predicate) {
         this.value = value;
-        this.matching = matching;
+
+        // Only run once; in case the caller created inappropriate Predicates which have side effects
+        matching = predicate.test(value.getValue());
     }
 
     /**

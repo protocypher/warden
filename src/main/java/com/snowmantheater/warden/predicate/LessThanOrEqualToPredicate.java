@@ -1,10 +1,11 @@
 package com.snowmantheater.warden.predicate;
 
+import lombok.NonNull;
+
 import java.util.Objects;
 import java.util.function.Predicate;
 
 import static com.snowmantheater.warden.predicate.Util.getComparableOf;
-import static java.util.Objects.requireNonNull;
 
 /**
  * {@link LessThanOrEqualToPredicate} matches values that are {@link Comparable} with and <b>less than or equal to</b> a
@@ -19,10 +20,10 @@ public class LessThanOrEqualToPredicate implements Predicate<Object> {
     /**
      * Creates a new {@link LessThanOrEqualToPredicate} matching values <b>less than or equal to</b> {@code object}.
      *
-     * @param object The given instance to test against
+     * @param object (non-null) The given instance to test against
      */
-    LessThanOrEqualToPredicate(Object object) {
-        this.object = requireNonNull(object, "object is null");
+    LessThanOrEqualToPredicate(@NonNull Object object) {
+        this.object = object;
     }
 
     /**

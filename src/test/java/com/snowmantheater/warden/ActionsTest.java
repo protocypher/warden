@@ -22,13 +22,13 @@ class ActionsTest {
         Actions actions;
         Value value = Value.of(null);
 
-        assertThrows(NullPointerException.class, () -> new Actions(null, true));
-        assertThrows(NullPointerException.class, () -> new Actions(null, false));
+        assertThrows(NullPointerException.class, () -> new Actions(null, t -> true));
+        assertThrows(NullPointerException.class, () -> new Actions(null, t -> false));
 
-        actions = new Actions(value, true);
+        actions = new Actions(value, t -> true);
         assertTrue(actions.isMatching());
 
-        actions = new Actions(value, false);
+        actions = new Actions(value, t -> false);
         assertFalse(actions.isMatching());
     }
 
@@ -36,10 +36,10 @@ class ActionsTest {
     void test_reject() {
         Value value = Value.of(null);
 
-        Actions matching = new Actions(value, true);
+        Actions matching = new Actions(value, t -> true);
         assertThrows(Rejection.class, matching::reject);
 
-        Actions nonMatching = new Actions(value, false);
+        Actions nonMatching = new Actions(value, t -> false);
         assertDoesNotThrow((Executable) nonMatching::reject);
     }
 
@@ -48,10 +48,10 @@ class ActionsTest {
         Value value = Value.of(null);
         String reason = "reason";
 
-        Actions matching = new Actions(value, true);
+        Actions matching = new Actions(value, t -> true);
         assertThrows(Rejection.class, () -> matching.reject(reason));
 
-        Actions nonMatching = new Actions(value, false);
+        Actions nonMatching = new Actions(value, t -> false);
         assertDoesNotThrow(() -> nonMatching.reject(reason));
     }
 
@@ -59,10 +59,10 @@ class ActionsTest {
     void test_accept() {
         Value value = Value.of(null);
 
-        Actions matching = new Actions(value, true);
+        Actions matching = new Actions(value, t -> true);
         assertDoesNotThrow((Executable) matching::accept);
 
-        Actions nonMatching = new Actions(value, false);
+        Actions nonMatching = new Actions(value, t -> false);
         assertThrows(Rejection.class, nonMatching::accept);
     }
 
@@ -70,10 +70,10 @@ class ActionsTest {
     void test_raise() {
         Value value = Value.of(null);
 
-        Actions matching = new Actions(value, true);
+        Actions matching = new Actions(value, t -> true);
         assertThrows(IllegalArgumentException.class, () -> matching.raise(IllegalArgumentException::new));
 
-        Actions notMatching = new Actions(value, false);
+        Actions notMatching = new Actions(value, t -> false);
         assertDoesNotThrow(() -> notMatching.raise(IllegalArgumentException::new));
     }
 
@@ -84,12 +84,12 @@ class ActionsTest {
         Consumer<Object> consumer;
 
         consumer = mock(Consumer.class);
-        Actions matching = new Actions(value, true);
+        Actions matching = new Actions(value, t -> true);
         matching.perform(consumer);
         verify(consumer, times(1)).accept(string);
 
         consumer = mock(Consumer.class);
-        Actions notMatching = new Actions(value, false);
+        Actions notMatching = new Actions(value, t -> false);
         notMatching.perform(consumer);
         verify(consumer, never()).accept(any());
     }
@@ -103,14 +103,14 @@ class ActionsTest {
 
         consumer = mock(Consumer.class);
         altConsumer = mock(Consumer.class);
-        Actions matching = new Actions(value, true);
+        Actions matching = new Actions(value, t -> true);
         matching.performOrElse(consumer, altConsumer);
         verify(consumer, times(1)).accept(string);
         verify(altConsumer, never()).accept(any());
 
         consumer = mock(Consumer.class);
         altConsumer = mock(Consumer.class);
-        Actions notMatching = new Actions(value, false);
+        Actions notMatching = new Actions(value, t -> false);
         notMatching.performOrElse(consumer, altConsumer);
         verify(consumer, never()).accept(any());
         verify(altConsumer, times(1)).accept(string);
@@ -123,12 +123,12 @@ class ActionsTest {
         Consumer<String> logger;
 
         logger = mock(Consumer.class);
-        Actions matching = new Actions(value, true);
+        Actions matching = new Actions(value, t -> true);
         matching.logReject(logger);
         verify(logger, times(1)).accept(expected);
 
         logger = mock(Consumer.class);
-        Actions notMatching = new Actions(value, false);
+        Actions notMatching = new Actions(value, t -> false);
         notMatching.logReject(logger);
         verify(logger, never()).accept(any());
     }
@@ -141,12 +141,12 @@ class ActionsTest {
         Consumer<String> logger;
 
         logger = mock(Consumer.class);
-        Actions matching = new Actions(value, true);
+        Actions matching = new Actions(value, t -> true);
         matching.logReject(reason, logger);
         verify(logger, times(1)).accept(expected);
 
         logger = mock(Consumer.class);
-        Actions notMatching = new Actions(value, false);
+        Actions notMatching = new Actions(value, t -> false);
         notMatching.logReject(reason, logger);
         verify(logger, never()).accept(any());
     }
@@ -158,12 +158,12 @@ class ActionsTest {
         Consumer<String> logger;
 
         logger = mock(Consumer.class);
-        Actions matching = new Actions(value, true);
+        Actions matching = new Actions(value, t -> true);
         matching.logAccept(logger);
         verify(logger, times(1)).accept(expected);
 
         logger = mock(Consumer.class);
-        Actions notMatching = new Actions(value, false);
+        Actions notMatching = new Actions(value, t -> false);
         notMatching.logAccept(logger);
         verify(logger, never()).accept(any());
     }
@@ -176,12 +176,12 @@ class ActionsTest {
         Consumer<String> logger;
 
         logger = mock(Consumer.class);
-        Actions matching = new Actions(value, true);
+        Actions matching = new Actions(value, t -> true);
         matching.logAccept(reason, logger);
         verify(logger, times(1)).accept(expected);
 
         logger = mock(Consumer.class);
-        Actions notMatching = new Actions(value, false);
+        Actions notMatching = new Actions(value, t -> false);
         notMatching.logAccept(reason, logger);
         verify(logger, never()).accept(any());
     }

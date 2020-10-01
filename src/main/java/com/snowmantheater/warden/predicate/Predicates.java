@@ -1,5 +1,7 @@
 package com.snowmantheater.warden.predicate;
 
+import lombok.NonNull;
+
 import java.util.function.Predicate;
 
 /**
@@ -93,7 +95,7 @@ public class Predicates {
     /**
      * Returns a {@link Predicate} matching values <b>greater than or equal to</b> {@code object}.
      *
-     * @param object The given instance to test against
+     * @param object (non-null) The given instance to test against
      *
      * @return A Predicate matching values greater than or equal to object
      */
@@ -104,7 +106,7 @@ public class Predicates {
     /**
      * Returns a {@link Predicate} matching values <b>greater than or equal to</b> {@code object}.
      *
-     * @param object The given instance to test against
+     * @param object (non-null) The given instance to test against
      *
      * @return A Predicate matching values greater than or equal to object
      */
@@ -115,7 +117,7 @@ public class Predicates {
     /**
      * Returns a {@link Predicate} matching values <b>after or at</b> {@code object}.
      *
-     * @param object The given instance to test against
+     * @param object (non-null) The given instance to test against
      *
      * @return A Predicate matching values after or at object
      */
@@ -126,7 +128,7 @@ public class Predicates {
     /**
      * Returns a {@link Predicate} matching values <b>greater than</b> {@code object}.
      *
-     * @param object The given instance to test against
+     * @param object (non-null) The given instance to test against
      *
      * @return A Predicate matching values greater than object
      */
@@ -137,7 +139,7 @@ public class Predicates {
     /**
      * Returns a {@link Predicate} matching values <b>greater than</b> {@code object}.
      *
-     * @param object The given instance to test against
+     * @param object (non-null) The given instance to test against
      *
      * @return A Predicate matching values greater than object
      */
@@ -148,7 +150,7 @@ public class Predicates {
     /**
      * Returns a {@link Predicate} matching values <b>after</b> {@code object}.
      *
-     * @param object The given instance to test against
+     * @param object (non-null) The given instance to test against
      *
      * @return A Predicate matching values after object
      */
@@ -159,7 +161,7 @@ public class Predicates {
     /**
      * Returns a {@link Predicate} matching values <b>less than or equal to</b> {@code object}.
      *
-     * @param object The given instance to test against
+     * @param object (non-null) The given instance to test against
      *
      * @return A Predicate matching values less than or equal to object
      */
@@ -170,7 +172,7 @@ public class Predicates {
     /**
      * Returns a {@link Predicate} matching values <b>less than or equal to</b> {@code object}.
      *
-     * @param object The given instance to test against
+     * @param object (non-null) The given instance to test against
      *
      * @return A Predicate matching values less than or equal to object
      */
@@ -181,7 +183,7 @@ public class Predicates {
     /**
      * Returns a {@link Predicate} matching values <b>before or at</b> {@code object}.
      *
-     * @param object The given instance to test against
+     * @param object (non-null) The given instance to test against
      *
      * @return A Predicate matching values before or at object
      */
@@ -192,7 +194,7 @@ public class Predicates {
     /**
      * Returns a {@link Predicate} matching values <b>less than</b> {@code object}.
      *
-     * @param object The given instance to test against
+     * @param object (non-null) The given instance to test against
      *
      * @return A Predicate matching values less than object
      */
@@ -203,7 +205,7 @@ public class Predicates {
     /**
      * Returns a {@link Predicate} matching values <b>less than</b> {@code object}.
      *
-     * @param object The given instance to test against
+     * @param object (non-null) The given instance to test against
      *
      * @return A Predicate matching values less than object
      */
@@ -214,7 +216,7 @@ public class Predicates {
     /**
      * Returns a {@link Predicate} matching values <b>before</b> {@code object}.
      *
-     * @param object The given instance to test against
+     * @param object (non-null) The given instance to test against
      *
      * @return A Predicate matching values before object
      */

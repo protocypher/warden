@@ -42,7 +42,7 @@ public class Validator {
     /**
      * Returns a {@link Validator} to evaluate {@code value} named {@code name}.
      *
-     * @param name The name of the value
+     * @param name (non-null)The name of the value
      * @param value The value to evaluate
      *
      * @return A Validator
@@ -54,8 +54,8 @@ public class Validator {
     /**
      * Returns a {@link Validator} to evaluate {@code value} named {@code name} inside {@code parent}.
      *
-     * @param parent The parent of the value
-     * @param name The name of the value
+     * @param parent (non-null) The parent of the value
+     * @param name (non-null) The name of the value
      * @param value The value to evaluate
      *
      * @return A Validator
@@ -67,11 +67,11 @@ public class Validator {
     /**
      * Returns a {@link Actions} which behaves according to whether {@code value} matches {@code predicate}.
      *
-     * @param predicate The Predicate to test with
+     * @param predicate (non-null) The Predicate to test with
      *
-     * @return A PredicateActions which behaves according to whether value passes predicate
+     * @return A PredicateActions which behaves according to the result of predicate
      */
-    public Actions is(Predicate<Object> predicate) {
-        return new Actions(value, predicate.test(value.getValue()));
+    public Actions is(@NonNull Predicate<Object> predicate) {
+        return new Actions(value, predicate);
     }
 }

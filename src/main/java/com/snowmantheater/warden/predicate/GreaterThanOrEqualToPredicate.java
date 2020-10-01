@@ -1,10 +1,11 @@
 package com.snowmantheater.warden.predicate;
 
+import lombok.NonNull;
+
 import java.util.Objects;
 import java.util.function.Predicate;
 
 import static com.snowmantheater.warden.predicate.Util.getComparableOf;
-import static java.util.Objects.requireNonNull;
 
 /**
  * {@link GreaterThanOrEqualToPredicate} matches values that are {@link Comparable} with and <b>greater than or equal
@@ -20,10 +21,10 @@ public class GreaterThanOrEqualToPredicate implements Predicate<Object> {
      * Creates a new {@link GreaterThanOrEqualToPredicate} matching values <b>greater than or equal to</b>
      * {@code object}.
      *
-     * @param object The given instance to test against
+     * @param object (non-null) The given instance to test against
      */
-    GreaterThanOrEqualToPredicate(Object object) {
-        this.object = requireNonNull(object, "object is null");
+    GreaterThanOrEqualToPredicate(@NonNull Object object) {
+        this.object = object;
     }
 
     /**

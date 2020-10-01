@@ -14,8 +14,8 @@ public class Rejection extends RuntimeException {
     /**
      * Creates a new {@link Rejection} with the rejected value and the reason message.
      *
-     * @param value The rejecting value
-     * @param message The reason message
+     * @param value The rejected value
+     * @param message (non-null) The reason message
      */
     public Rejection(Object value, @NonNull String message) {
         super(message);
