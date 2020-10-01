@@ -58,6 +58,7 @@ class ValueTest {
         String name = "name";
         Object parent = new Object();
 
+        assertThrows(NullPointerException.class, () -> Value.of(null, null, null));
         assertThrows(NullPointerException.class, () -> Value.of(null, name, null));
         assertThrows(NullPointerException.class, () -> Value.of(parent, null, null));
 
