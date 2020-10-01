@@ -1,21 +1,23 @@
 package com.snowmantheater.warden;
 
+import lombok.NonNull;
+
 /**
- * {@link ValidationException}s are thrown when values cannot be accepted or are explicitly rejected.
+ * {@link Rejection}s are thrown when values cannot be accepted or are explicitly rejected.
  *
  * @version 1.0.0
  * @author benjamin@snowmantheater.com
  */
-public class ValidationException extends RuntimeException {
+public class Rejection extends RuntimeException {
     private final Object value;
 
     /**
-     * Creates a new {@link ValidationException} with the rejected value and the reason message.
+     * Creates a new {@link Rejection} with the rejected value and the reason message.
      *
      * @param value The rejecting value
      * @param message The reason message
      */
-    public ValidationException(Object value, String message) {
+    public Rejection(Object value, @NonNull String message) {
         super(message);
         this.value = value;
     }

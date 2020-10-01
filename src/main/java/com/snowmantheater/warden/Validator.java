@@ -1,50 +1,77 @@
 package com.snowmantheater.warden;
 
+import lombok.NonNull;
+
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
+import static com.snowmantheater.warden.Value.of;
 
 /**
- * A {@link Validator} validates a value with given {@link Predicate}s and provides appropriate {@link PredicateActions}
+ * A {@link Validator} validates a value with given {@link Predicate}s and provides appropriate {@link Actions}
  * based on whether the value matches.
  *
  * @see Predicate
- * @see PredicateActions
+ * @see Actions
  *
  * @version 1.0.0
  * @author benjamin@snowmantheater.com
  */
-public interface Validator {
+public class Validator {
+    private final Value value;
 
     /**
-     * Returns a {@link Validator} which can validate {@code value}.
+     * Create a new {@link Validator} for {@code value}.
      *
-     * @param value The value to evaluate
-     *
-     * @return The value
+     * @param value The ValidationValue to evaluate
      */
-    static Validator when(Object value) {
-        return new ValueValidator(value);
+    private Validator(Value value) {
+        this.value = value;
     }
 
     /**
-     * Returns a {@link Validator} which validates {@code value} named {@code name}.
+     * Returns a {@link Validator} to evaluate {@code value}.
+     *
+     * @param value The value to evaluate
+     *
+     * @return A Validator
+     */
+    public static Validator when(Object value) {
+        return new Validator(of(value));
+    }
+
+    /**
+     * Returns a {@link Validator} to evaluate {@code value} named {@code name}.
      *
      * @param name The name of the value
      * @param value The value to evaluate
      *
-     * @return A Validator which validates value named name
+     * @return A Validator
      */
-    static Validator when(String name, Object value) {
-        return new FieldValidator(requireNonNull(name), value);
+    public static Validator when(@NonNull String name, Object value) {
+        return new Validator(of(name, value));
     }
 
     /**
-     * Returns a {@link PredicateActions} which behaves according to whether {@code value} passes {@code predicate}.
+     * Returns a {@link Validator} to evaluate {@code value} named {@code name} inside {@code parent}.
+     *
+     * @param parent The parent of the value
+     * @param name The name of the value
+     * @param value The value to evaluate
+     *
+     * @return A Validator
+     */
+    public static Validator when(@NonNull Object parent, @NonNull String name, Object value) {
+        return new Validator(of(parent, name, value));
+    }
+
+    /**
+     * Returns a {@link Actions} which behaves according to whether {@code value} matches {@code predicate}.
      *
      * @param predicate The Predicate to test with
      *
      * @return A PredicateActions which behaves according to whether value passes predicate
      */
-    PredicateActions is(Predicate<Object> predicate);
+    public Actions is(Predicate<Object> predicate) {
+        return new Actions(value, predicate.test(value.getValue()));
+    }
 }
