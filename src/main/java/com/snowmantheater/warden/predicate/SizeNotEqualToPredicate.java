@@ -9,8 +9,8 @@ import static com.snowmantheater.warden.predicate.Util.getSizeOf;
  * {@link SizeNotEqualToPredicate} matches values that have <i>magnitude</i> and their size is <b>not equal</b> to a
  * given size.
  *
- * @version 1.0.0
  * @author benjamin@snowmantheater.com
+ * @version 1.0.0
  */
 public class SizeNotEqualToPredicate implements Predicate<Object> {
     private final int size;
@@ -47,6 +47,6 @@ public class SizeNotEqualToPredicate implements Predicate<Object> {
      */
     @Override
     public boolean equals(Object other) {
-        return other instanceof SizeNotEqualToPredicate && Objects.equals(size, ((SizeNotEqualToPredicate) other).size);
+        return other instanceof SizeNotEqualToPredicate && Objects.equals(size, ((SizeNotEqualToPredicate)other).size);
     }
 }

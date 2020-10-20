@@ -8,8 +8,8 @@ import java.util.function.Predicate;
  * {@link NotEqualToPredicate} matches values that do <b>not equal</b> a given instance. If both the value and instance
  * are arrays then {@link Arrays#equals} is used otherwise {@link Objects#equals}.
  *
- * @version 1.0.0
  * @author benjamin@snowmantheater.com
+ * @version 1.0.0
  */
 public class NotEqualToPredicate implements Predicate<Object> {
     private final Object object;
@@ -38,39 +38,39 @@ public class NotEqualToPredicate implements Predicate<Object> {
      */
     @Override
     public boolean test(Object t) {
-        if(object instanceof Object[] && t instanceof Object[]) {
+        if (object instanceof Object[] && t instanceof Object[]) {
             return !Arrays.equals((Object[])object, (Object[])t);
         }
 
-        if(object instanceof boolean[] && t instanceof boolean[]) {
+        if (object instanceof boolean[] && t instanceof boolean[]) {
             return !Arrays.equals((boolean[])object, (boolean[])t);
         }
 
-        if(object instanceof byte[] && t instanceof byte[]) {
+        if (object instanceof byte[] && t instanceof byte[]) {
             return !Arrays.equals((byte[])object, (byte[])t);
         }
 
-        if(object instanceof char[] && t instanceof char[]) {
+        if (object instanceof char[] && t instanceof char[]) {
             return !Arrays.equals((char[])object, (char[])t);
         }
 
-        if(object instanceof double[] && t instanceof double[]) {
+        if (object instanceof double[] && t instanceof double[]) {
             return !Arrays.equals((double[])object, (double[])t);
         }
 
-        if(object instanceof float[] && t instanceof float[]) {
+        if (object instanceof float[] && t instanceof float[]) {
             return !Arrays.equals((float[])object, (float[])t);
         }
 
-        if(object instanceof int[] && t instanceof int[]) {
+        if (object instanceof int[] && t instanceof int[]) {
             return !Arrays.equals((int[])object, (int[])t);
         }
 
-        if(object instanceof long[] && t instanceof long[]) {
+        if (object instanceof long[] && t instanceof long[]) {
             return !Arrays.equals((long[])object, (long[])t);
         }
 
-        if(object instanceof short[] && t instanceof short[]) {
+        if (object instanceof short[] && t instanceof short[]) {
             return !Arrays.equals((short[])object, (short[])t);
         }
 

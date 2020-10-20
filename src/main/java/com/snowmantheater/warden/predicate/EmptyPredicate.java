@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 /**
  * {@link EmptyPredicate} matches values that have <i>magnitude</i>, are not null and are <b>empty</b>.
  *
- * @version 1.0.0
  * @author benjamin@snowmantheater.com
+ * @version 1.0.0
  */
 public class EmptyPredicate implements Predicate<Object> {
 

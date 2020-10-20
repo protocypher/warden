@@ -40,7 +40,7 @@ class ActionsTest {
         assertThrows(Rejection.class, matching::reject);
 
         Actions nonMatching = new Actions(value, t -> false);
-        assertDoesNotThrow((Executable) nonMatching::reject);
+        assertDoesNotThrow((Executable)nonMatching::reject);
     }
 
     @Test
@@ -60,7 +60,7 @@ class ActionsTest {
         Value value = Value.of(null);
 
         Actions matching = new Actions(value, t -> true);
-        assertDoesNotThrow((Executable) matching::accept);
+        assertDoesNotThrow(matching::accept);
 
         Actions nonMatching = new Actions(value, t -> false);
         assertThrows(Rejection.class, nonMatching::accept);

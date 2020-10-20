@@ -6,8 +6,8 @@ import java.util.function.Predicate;
  * {@link Predicates} provides various, static, constructor methods to create {@link Predicate}s for various matches.
  * Some of these methods pre-combine predicates, eg. Between = GreaterThan(x) and LessThan(y).
  *
- * @version 1.0.0
  * @author benjamin@snowmantheater.com
+ * @version 1.0.0
  */
 public class Predicates {
     /**

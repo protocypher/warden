@@ -4,21 +4,19 @@ import lombok.Getter;
 import lombok.NonNull;
 
 /**
- * Represents a value being validated with a possible name and parent class. A {@link Value} can represent a
- * variable, parameter, argument, field or property.
+ * Represents a value being validated with a possible name and parent class. A {@link Value} can represent a variable,
+ * parameter, argument, field or property.
  *
- * @version 1.0.0
  * @author benjamin@snowmantheater.com
+ * @version 1.0.0
  */
 class Value {
-    private final Object parent;
-    private final String name;
+    private enum Type {FIELD, VARIABLE, VALUE}
 
     @Getter
     private final Object value;
-
-    private enum Type {FIELD, VARIABLE, VALUE}
-
+    private final Object parent;
+    private final String name;
     private final Type type;
 
     /**
@@ -33,9 +31,9 @@ class Value {
         this.name = name;
         this.value = value;
 
-        if(parent == null && name == null) {
+        if (parent == null && name == null) {
             type = Type.VALUE;
-        } else if(parent == null) {
+        } else if (parent == null) {
             type = Type.VARIABLE;
         } else {
             type = Type.FIELD;
@@ -45,8 +43,8 @@ class Value {
     /**
      * Creates a new value with a name and parent instance. This can be a property or field.
      *
-     * @param parent (non-null) The parent instance
-     * @param name (non-null) The name of the value
+     * @param parent The parent instance
+     * @param name The name of the value
      * @param value The actual value
      *
      * @return A new ValidationValue
@@ -58,7 +56,7 @@ class Value {
     /**
      * Creates a new value with a name. This can be an argument or parameter.
      *
-     * @param name (non-null) The name of the value
+     * @param name The name of the value
      * @param value The actual value
      *
      * @return A new ValidationValue
@@ -111,7 +109,7 @@ class Value {
      */
     @Override
     public String toString() {
-        switch(type) {
+        switch (type) {
             case FIELD:
                 return parent.getClass().getSimpleName() + "." + name + "=\"" + value + "\"";
 

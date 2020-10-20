@@ -10,11 +10,8 @@ import static com.snowmantheater.warden.Value.of;
  * A {@link Validator} validates a value with given {@link Predicate}s and provides appropriate {@link Actions}
  * based on whether the value matches.
  *
- * @see Predicate
- * @see Actions
- *
- * @version 1.0.0
  * @author benjamin@snowmantheater.com
+ * @version 1.0.0
  */
 public class Validator {
     private final Value value;
@@ -42,7 +39,7 @@ public class Validator {
     /**
      * Returns a {@link Validator} to evaluate {@code value} named {@code name}.
      *
-     * @param name (non-null)The name of the value
+     * @param name name of the value
      * @param value The value to evaluate
      *
      * @return A Validator
@@ -54,8 +51,8 @@ public class Validator {
     /**
      * Returns a {@link Validator} to evaluate {@code value} named {@code name} inside {@code parent}.
      *
-     * @param parent (non-null) The parent of the value
-     * @param name (non-null) The name of the value
+     * @param parent The parent of the value
+     * @param name The name of the value
      * @param value The value to evaluate
      *
      * @return A Validator
@@ -67,7 +64,7 @@ public class Validator {
     /**
      * Returns a {@link Actions} which behaves according to whether {@code value} matches {@code predicate}.
      *
-     * @param predicate (non-null) The Predicate to test with
+     * @param predicate The Predicate to test with
      *
      * @return A PredicateActions which behaves according to the result of predicate
      */

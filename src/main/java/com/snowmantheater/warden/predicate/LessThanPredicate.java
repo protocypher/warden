@@ -10,8 +10,8 @@ import static com.snowmantheater.warden.predicate.Util.getComparableOf;
 /**
  * {@link LessThanPredicate} matches values that are {@link Comparable} with and <b>less than</b> a given instance.
  *
- * @version 1.0.0
  * @author benjamin@snowmantheater.com
+ * @version 1.0.0
  */
 public class LessThanPredicate implements Predicate<Object> {
     private final Object object;
@@ -19,7 +19,7 @@ public class LessThanPredicate implements Predicate<Object> {
     /**
      * Creates a new {@link LessThanPredicate} matching values <b>less than</b> {@code object}.
      *
-     * @param object (non-null) The given instance to test against
+     * @param object The given instance to test against
      */
     LessThanPredicate(@NonNull Object object) {
         this.object = object;
@@ -42,7 +42,7 @@ public class LessThanPredicate implements Predicate<Object> {
     public boolean test(Object t) {
         try {
             return getComparableOf(t).filter(c -> c.compareTo(object) < 0).isPresent();
-        } catch(ClassCastException ignored) {
+        } catch (ClassCastException ignored) {
             return false;
         }
     }
@@ -52,6 +52,6 @@ public class LessThanPredicate implements Predicate<Object> {
      */
     @Override
     public boolean equals(Object other) {
-        return other instanceof LessThanPredicate && Objects.equals(object, ((LessThanPredicate) other).object);
+        return other instanceof LessThanPredicate && Objects.equals(object, ((LessThanPredicate)other).object);
     }
 }

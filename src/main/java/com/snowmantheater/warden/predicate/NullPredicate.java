@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 /**
  * {@link NullPredicate} matches values that are <i>nullable</i> and are <b>null</b>.
  *
- * @version 1.0.0
  * @author benjamin@snowmantheater.com
+ * @version 1.0.0
  */
 public class NullPredicate implements Predicate<Object> {
 

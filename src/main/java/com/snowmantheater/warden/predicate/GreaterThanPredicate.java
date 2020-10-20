@@ -11,8 +11,8 @@ import static com.snowmantheater.warden.predicate.Util.getComparableOf;
  * {@link GreaterThanPredicate} matches values that are {@link Comparable} with and <b>greater than</b> a given
  * instance.
  *
- * @version 1.0.0
  * @author benjamin@snowmantheater.com
+ * @version 1.0.0
  */
 public class GreaterThanPredicate implements Predicate<Object> {
     private final Object object;
@@ -20,7 +20,7 @@ public class GreaterThanPredicate implements Predicate<Object> {
     /**
      * Creates a new {@link GreaterThanPredicate} matching values <b>greater than</b> {@code object}.
      *
-     * @param object (non-null) The given instance to test against
+     * @param object The given instance to test against
      */
     GreaterThanPredicate(@NonNull Object object) {
         this.object = object;
@@ -43,7 +43,7 @@ public class GreaterThanPredicate implements Predicate<Object> {
     public boolean test(Object t) {
         try {
             return getComparableOf(t).filter(c -> c.compareTo(object) > 0).isPresent();
-        } catch(ClassCastException ignored) {
+        } catch (ClassCastException ignored) {
             return false;
         }
     }
@@ -53,6 +53,6 @@ public class GreaterThanPredicate implements Predicate<Object> {
      */
     @Override
     public boolean equals(Object other) {
-        return other instanceof GreaterThanPredicate && Objects.equals(object, ((GreaterThanPredicate) other).object);
+        return other instanceof GreaterThanPredicate && Objects.equals(object, ((GreaterThanPredicate)other).object);
     }
 }
